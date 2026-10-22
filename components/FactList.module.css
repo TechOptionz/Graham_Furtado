@@ -1,0 +1,25 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--fact-min, 200px)), 1fr));
+  gap: 0 clamp(24px, 3vw, 40px);
+  border-top: 1px solid var(--charcoal);
+}
+
+.item {
+  padding: 18px 0 20px;
+  border-bottom: 1px solid var(--rule-ink-soft);
+}
+
+.term {
+  margin-bottom: 8px;
+  font: 400 11px/1.4 var(--font-sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.value {
+  font: 400 17px/1.45 var(--font-sans);
+  color: var(--charcoal);
+  overflow-wrap: anywhere;
+}

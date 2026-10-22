@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Graham Furtado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#F5F2EC;color:#191A1B;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#191A1B;text-decoration:none}
+a:hover{color:#3D463D}
+input,textarea,button,select{font-family:'Figtree',system-ui,sans-serif}
+::selection{background:#DBD1C5;color:#191A1B}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="min-height:100vh;background:#F5F2EC;color:#191A1B;font-family:'Figtree',system-ui,sans-serif">
+<dc-import name="SiteHeader" active="about" tone="dark" hint-size="100%,0px"></dc-import>
+
+<!-- HERO -->
+<section data-screen-label="About hero" style="padding:clamp(150px,18vw,220px) 0 clamp(72px,9vw,128px)">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:56px 80px;align-items:flex-end">
+    <div style="flex:1.3 1 460px;min-width:0">
+      <div style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>About Graham</div>
+      <h1 style="margin:0 0 40px;font:400 clamp(46px,6.4vw,104px)/.98 'Instrument Serif',Georgia,serif;letter-spacing:-.02em;text-wrap:balance">A property perspective built over decades.</h1>
+      <div style="max-width:620px">
+        <p style="margin:0 0 22px;font:400 clamp(17px,1.3vw,20px)/1.6 'Figtree',sans-serif;text-wrap:pretty">Graham Furtado is a Queensland property developer and experienced real-estate professional with around three decades of industry experience.</p>
+        <p style="margin:0;font:400 17px/1.65 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Through Furtado Property, he combines deep market knowledge with residential development experience, guiding projects from site opportunity and early development strategy through design, consultant coordination, construction and market delivery.</p>
+      </div>
+    </div>
+    <div style="flex:0 1 400px;min-width:min(100%,260px);position:relative;aspect-ratio:4/5;background:linear-gradient(170deg,#DBD1C5,#A99E8F);color:#191A1B;overflow:hidden;margin-left:auto">
+      <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(25,26,27,.06) 0 1px,transparent 1px 56px)"></div>
+      <image-slot id="portrait" shape="rect" placeholder="Approved portrait of Graham Furtado" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSIONAL IDENTITY -->
+<section data-screen-label="Professional identity" style="background:#DBD1C5;padding:clamp(88px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:48px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Professional identity</div>
+    <div style="display:flex;flex-wrap:wrap;gap:48px 80px;align-items:flex-start">
+      <div data-reveal="1" style="flex:1.2 1 420px;min-width:0;display:flex;flex-direction:column">
+        <div style="padding:22px 0;border-top:1px solid rgba(25,26,27,.25);font:400 clamp(34px,4vw,64px)/1 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">Property Developer</div>
+        <div style="padding:22px 0;border-top:1px solid rgba(25,26,27,.25);font:400 clamp(34px,4vw,64px)/1 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">Real Estate Professional</div>
+        <div style="padding:22px 0;border-top:1px solid rgba(25,26,27,.25);border-bottom:1px solid rgba(25,26,27,.25);font:400 clamp(34px,4vw,64px)/1 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">Development Advisor</div>
+      </div>
+      <div data-reveal="1" style="flex:1 1 340px;max-width:520px">
+        <p style="margin:0 0 20px;font:400 17px/1.65 'Figtree',sans-serif;text-wrap:pretty">Graham's professional identity connects long-standing real-estate experience in Brisbane with an active role in residential development.</p>
+        <p style="margin:0;font:400 17px/1.65 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Furtado Property is the development company through which that work is delivered: a South-East Queensland residential developer whose projects publicly identify Graham as the developer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section data-screen-label="Experience" style="padding:clamp(88px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div data-reveal="1" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 64px">
+      <h2 style="margin:0;font:400 clamp(56px,9.6vw,168px)/.92 'Instrument Serif',Georgia,serif;letter-spacing:-.035em;text-transform:uppercase;text-wrap:balance">Around<br>three <em style="font-style:italic;color:#3D463D">decades</em></h2>
+      <div style="max-width:320px;padding-bottom:clamp(4px,1vw,18px)">
+        <div style="font:600 11px/1 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#3D463D;margin-bottom:16px;padding-top:16px;border-top:1px solid #191A1B">Property experience</div>
+        <p style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Residential real estate in Brisbane, extended into property development across Queensland.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENT DEVELOPMENT STORY -->
+<section data-screen-label="Current development story" style="padding:0 0 clamp(88px,11vw,160px)">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px;padding-top:40px;border-top:1px solid #DBD1C5"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Current development story</div>
+    <div style="display:flex;flex-wrap:wrap;gap:40px 80px;align-items:flex-start;margin-bottom:clamp(48px,6vw,80px)">
+      <h2 data-reveal="1" style="flex:1.2 1 420px;margin:0;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;text-wrap:balance">Two projects, one active development role.</h2>
+      <p data-reveal="1" style="flex:1 1 360px;max-width:560px;margin:0;font:400 17px/1.65 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">His current development story includes MIRA Living, a boutique 25-residence oceanfront project in Bargara, and Furtado Property's recently lodged 113-apartment residential proposal in West End, Brisbane. Together they show Graham operating beyond property sales, with a public role tied to site opportunity, product positioning, consultant coordination and delivery.</p>
+    </div>
+    <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:0 clamp(24px,4vw,64px);border-top:1px solid #191A1B">
+      <a href="Developments.dc.html" onClick="{{ go }}" style="display:block;color:#191A1B;padding:32px 0;border-bottom:1px solid #DBD1C5" style-focus="outline:2px solid #9A8060;outline-offset:4px">
+        <div style="display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-bottom:14px"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060">01</span><span style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Nearing completion · Sept 2026</span></div>
+        <h3 style="margin:0 0 8px;font:400 clamp(30px,2.8vw,40px)/1.05 'Instrument Serif',Georgia,serif">MIRA Living</h3>
+        <p style="margin:0;font:400 15px/1.55 'Figtree',sans-serif;color:#3D463D">Bargara, Queensland · 25 residences · Boutique oceanfront residential</p>
+      </a>
+      <a href="Developments.dc.html" onClick="{{ go }}" style="display:block;color:#191A1B;padding:32px 0;border-bottom:1px solid #DBD1C5" style-focus="outline:2px solid #9A8060;outline-offset:4px">
+        <div style="display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-bottom:14px"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060">02</span><span style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Proposal · Lodged Sept 2026</span></div>
+        <h3 style="margin:0 0 8px;font:400 clamp(30px,2.8vw,40px)/1.05 'Instrument Serif',Georgia,serif">West End Residential Proposal</h3>
+        <p style="margin:0;font:400 15px/1.55 'Figtree',sans-serif;color:#3D463D">West End, Brisbane · 13 storeys · 113 apartments proposed</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GEOGRAPHY -->
+<section data-screen-label="Geographic focus" style="border-top:1px solid #DBD1C5;padding:clamp(88px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:56px 80px;align-items:center">
+    <div style="flex:1 1 380px;min-width:0">
+      <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Geographic focus</div>
+      <h2 data-reveal="1" style="margin:0 0 28px;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;text-wrap:balance">Queensland, with a focus on opportunity.</h2>
+      <p data-reveal="1" style="margin:0 0 48px;max-width:520px;font:400 17px/1.65 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Brisbane and South-East Queensland, with development experience extending to Bargara near Bundaberg.</p>
+      <ul data-reveal="1" style="list-style:none;margin:0;padding:0;border-top:1px solid #191A1B;max-width:520px">
+        <li style="display:flex;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid #DBD1C5"><span style="font:400 clamp(20px,1.6vw,24px)/1.2 'Instrument Serif',Georgia,serif">Queensland</span><span style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#3D463D;text-align:right">State focus</span></li>
+        <li style="display:flex;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid #DBD1C5"><span style="font:400 clamp(20px,1.6vw,24px)/1.2 'Instrument Serif',Georgia,serif">Brisbane</span><span style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#3D463D;text-align:right">Real estate · West End proposal</span></li>
+        <li style="display:flex;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid #DBD1C5"><span style="font:400 clamp(20px,1.6vw,24px)/1.2 'Instrument Serif',Georgia,serif">South-East Queensland</span><span style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#3D463D;text-align:right">Furtado Property base</span></li>
+        <li style="display:flex;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid #DBD1C5"><span style="font:400 clamp(20px,1.6vw,24px)/1.2 'Instrument Serif',Georgia,serif">Bargara</span><span style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#3D463D;text-align:right">MIRA Living · near Bundaberg</span></li>
+      </ul>
+    </div>
+    <div data-reveal="1" style="flex:1 1 380px;min-width:0;max-width:640px;margin-left:auto">
+      <div ref="{{ mapRef }}" role="img" aria-label="Abstract map of Queensland marking Brisbane, South-East Queensland and Bargara" style="position:relative;width:100%;aspect-ratio:1/1.05"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL BRAND DIRECTION -->
+<section data-screen-label="Personal brand direction" style="background:#191A1B;color:#F5F2EC;padding:clamp(88px,11vw,160px) 0;border-bottom:1px solid rgba(245,242,236,.12)">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#DBD1C5;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Personal brand direction</div>
+    <div style="display:flex;flex-wrap:wrap;gap:40px 80px;align-items:flex-start;margin-bottom:clamp(56px,7vw,96px)">
+      <h2 data-reveal="1" style="flex:1.2 1 420px;margin:0;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;text-wrap:balance">The person above the projects.</h2>
+      <p data-reveal="1" style="flex:1 1 360px;max-width:560px;margin:0;font:400 17px/1.65 'Figtree',sans-serif;color:#DBD1C5;text-wrap:pretty">Graham's personal profile sits above the individual development brands. Furtado Property remains the development company; MIRA Living and future projects provide proof of delivery; the personal brand explains the experience, thinking, approach and relationships behind those projects.</p>
+    </div>
+    <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:0 clamp(24px,3vw,48px);border-top:1px solid rgba(245,242,236,.2)">
+      <div style="padding:32px 0 40px;border-bottom:1px solid rgba(245,242,236,.2)">
+        <div style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;margin-bottom:24px">i</div>
+        <h3 style="margin:0 0 12px;font:400 clamp(28px,2.4vw,36px)/1.1 'Instrument Serif',Georgia,serif">Graham Furtado</h3>
+        <p style="margin:0;font:400 15px/1.6 'Figtree',sans-serif;color:#DBD1C5">Experience, thinking, strategy, relationships and leadership.</p>
+      </div>
+      <div style="padding:32px 0 40px;border-bottom:1px solid rgba(245,242,236,.2)">
+        <div style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;margin-bottom:24px">ii</div>
+        <h3 style="margin:0 0 12px;font:400 clamp(28px,2.4vw,36px)/1.1 'Instrument Serif',Georgia,serif">Furtado Property</h3>
+        <p style="margin:0;font:400 15px/1.6 'Figtree',sans-serif;color:#DBD1C5">The residential development company, based in South-East Queensland.</p>
+      </div>
+      <div style="padding:32px 0 40px;border-bottom:1px solid rgba(245,242,236,.2)">
+        <div style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;margin-bottom:24px">iii</div>
+        <h3 style="margin:0 0 12px;font:400 clamp(28px,2.4vw,36px)/1.1 'Instrument Serif',Georgia,serif">The projects</h3>
+        <p style="margin:0;font:400 15px/1.6 'Figtree',sans-serif;color:#DBD1C5">MIRA Living, the West End proposal and the developments that follow.</p>
+      </div>
+    </div>
+    <div data-reveal="1" style="margin-top:clamp(56px,7vw,96px);display:flex;flex-wrap:wrap;gap:14px">
+      <a href="Developments.dc.html" onClick="{{ go }}" style="display:inline-flex;align-items:center;background:#F5F2EC;color:#191A1B;padding:18px 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:1px solid #F5F2EC;transition:background .3s,border-color .3s" style-hover="background:#DBD1C5;border-color:#DBD1C5;color:#191A1B" style-focus="outline:2px solid #9A8060;outline-offset:4px">View Developments</a>
+      <a href="Contact.dc.html" onClick="{{ go }}" style="display:inline-flex;align-items:center;background:transparent;color:#F5F2EC;padding:18px 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(245,242,236,.45);transition:border-color .3s" style-hover="border-color:#F5F2EC;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Start a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  mapRef = React.createRef();
+  componentDidMount() {
+    this._reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.setupReveal();
+    this.renderMap();
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+  setupReveal() {
+    const root = this.rootRef.current;
+    if (!root || this._reduced || !('IntersectionObserver' in window)) return;
+    const vh = window.innerHeight;
+    const els = Array.from(root.querySelectorAll('[data-reveal]')).filter(el => el.getBoundingClientRect().top > vh * 0.9);
+    els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .9s cubic-bezier(.2,.6,.2,1), transform .9s cubic-bezier(.2,.6,.2,1)'; });
+    this._io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this._io.unobserve(e.target); } }), { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(el => this._io.observe(el));
+  }
+  async renderMap() {
+    const host = this.mapRef.current;
+    if (!host) return;
+    for (let i = 0; i < 100 && !(window.d3 && window.topojson); i++) await new Promise(r => setTimeout(r, 100));
+    if (!(window.d3 && window.topojson)) return;
+    const d3 = window.d3;
+    let topo;
+    try { topo = await (await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')).json(); } catch (e) { return; }
+    const countries = window.topojson.feature(topo, topo.objects.countries).features;
+    const aus = countries.find(f => f.id === '036' || f.properties.name === 'Australia');
+    if (!aus) return;
+    // Queensland extent (statutory meridians/parallels; ocean edges clipped by coastline). Ring wound clockwise for d3-geo.
+    const qld = { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[
+      [153.55, -28.17], [152.5, -28.42], [151.5, -28.85], [150.0, -28.96], [148.95, -29.0], [141.0, -29.0],
+      [141.0, -26.0], [138.0, -26.0], [138.0, -9.5], [155.5, -9.5], [155.5, -28.17], [153.55, -28.17]
+    ]] } };
+    const W = host.clientWidth || 600, H = host.clientHeight || W * 1.05;
+    const proj = d3.geoMercator().fitExtent([[W * 0.06, H * 0.06], [W * 0.76, H * 0.94]], {
+      type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[137.5, -29.5], [137.5, -10.5], [154.5, -10.5], [154.5, -29.5], [137.5, -29.5]]] }
+    });
+    const path = d3.geoPath(proj);
+    const svg = d3.select(host).append('svg').attr('viewBox', '0 0 ' + W + ' ' + H).attr('width', '100%').attr('height', '100%').style('display', 'block');
+    svg.append('defs').append('clipPath').attr('id', 'qld-clip').append('path').attr('d', path(qld));
+    svg.append('path').attr('d', path(aus)).attr('fill', '#DBD1C5').attr('fill-opacity', .45).attr('stroke', 'none');
+    svg.append('path').attr('d', path(aus)).attr('clip-path', 'url(#qld-clip)').attr('fill', '#DBD1C5').attr('stroke', '#3D463D').attr('stroke-width', 1);
+    const border = { type: 'LineString', coordinates: [[153.55, -28.17], [152.5, -28.42], [151.5, -28.85], [150.0, -28.96], [148.95, -29.0], [141.0, -29.0], [141.0, -26.0], [138.0, -26.0], [138.0, -16.5]] };
+    svg.append('path').attr('d', path(border)).attr('fill', 'none').attr('stroke', '#3D463D').attr('stroke-width', 1).attr('stroke-dasharray', '2 4');
+    const [bx, by] = proj([153.03, -27.47]);
+    const seqR = Math.abs(proj([153.03, -25.9])[1] - by);
+    svg.append('circle').attr('cx', bx).attr('cy', by).attr('r', seqR).attr('fill', '#9A8060').attr('fill-opacity', .08).attr('stroke', '#9A8060').attr('stroke-width', 1).attr('stroke-dasharray', '3 5');
+    svg.append('text').attr('x', bx - seqR - 8).attr('y', by + 4).attr('text-anchor', 'end').attr('fill', '#3D463D').style('font', "600 10px 'Figtree', sans-serif").style('letter-spacing', '.16em').text('SOUTH-EAST QUEENSLAND');
+    [{ name: 'Bargara', sub: 'MIRA Living', lon: 152.46, lat: -24.82, dx: 14, dy: -6 }, { name: 'Brisbane', sub: 'West End', lon: 153.03, lat: -27.47, dx: 14, dy: 4 }].forEach(p => {
+      const [x, y] = proj([p.lon, p.lat]);
+      svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 9).attr('fill', 'none').attr('stroke', '#9A8060').attr('stroke-width', 1);
+      svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 3.5).attr('fill', '#191A1B');
+      svg.append('text').attr('x', x + p.dx).attr('y', y + p.dy).attr('fill', '#191A1B').style('font', "400 20px 'Instrument Serif', Georgia, serif").text(p.name);
+      svg.append('text').attr('x', x + p.dx).attr('y', y + p.dy + 16).attr('fill', '#3D463D').style('font', "600 10px 'Figtree', sans-serif").style('letter-spacing', '.14em').text(p.sub.toUpperCase());
+    });
+    svg.append('text').attr('x', W * 0.08).attr('y', H * 0.97).attr('fill', '#A99E8F').style('font', "600 10px 'Figtree', sans-serif").style('letter-spacing', '.18em').text('QUEENSLAND · AUSTRALIA');
+  }
+  renderVals() {
+    return {
+      rootRef: this.rootRef, mapRef: this.mapRef,
+      go: (e) => {
+        const href = e.currentTarget.getAttribute('href');
+        if (!href || e.metaKey || e.ctrlKey) return;
+        e.preventDefault();
+        if (this._reduced) { window.location.href = href; return; }
+        document.body.style.transition = 'opacity .3s ease'; document.body.style.opacity = '0';
+        setTimeout(() => { window.location.href = href; }, 300);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

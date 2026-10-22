@@ -1,0 +1,494 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+/* Background photograph: slightly desaturated so it sits behind the name. */
+.media {
+  position: absolute;
+  inset: 0;
+}
+/* Exit (desktop): 100% → 104% as the hero scrolls away (--p from data-progress="exit"). */
+.frame {
+  height: 100%;
+  transform: scale(calc(1 + var(--p, 0) * 0.04));
+  transform-origin: 50% 40%;
+}
+.media :global(img) {
+  filter: saturate(0.85);
+}
+
+/* Left-side shade keeps the identity column legible; vertical shade frames header and foot. */
+.shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(14, 36, 51, 0.78) 0%, rgba(14, 36, 51, 0.45) 38%, rgba(14, 36, 51, 0) 70%),
+    linear-gradient(
+      180deg,
+      rgba(14, 36, 51, 0.6) 0%,
+      rgba(14, 36, 51, 0.2) 26%,
+      rgba(14, 36, 51, 0.4) 46%,
+      rgba(14, 36, 51, 0.82) 72%,
+      rgba(14, 36, 51, 0.94) 100%
+    );
+}
+.exitShade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--charcoal);
+  opacity: calc(var(--p, 0) * 0.08);
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: end;
+  padding-top: 140px;
+  padding-bottom: clamp(36px, 4.5vw, 56px);
+}
+
+/* Identity block: rule → name → role → introduction → actions */
+.identity {
+  max-width: 1100px;
+}
+
+.rule {
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin-bottom: clamp(20px, 2.4vw, 32px);
+  background: var(--bronze);
+  transform-origin: left center;
+}
+
+.name {
+  margin: 0;
+  font: 400 clamp(67px, 10vw, 157px) / 0.86 var(--font-serif);
+  letter-spacing: -0.018em;
+  /* Exit (desktop): drifts at ~0.9× scroll speed. */
+  translate: 0 calc(var(--p, 0) * 10svh);
+}
+.nameLine {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0 0.04em 0.09em 0;
+  margin-bottom: -0.09em;
+  vertical-align: top;
+}
+.nameLine > span:first-child {
+  display: inline-block;
+  transform-origin: left bottom;
+}
+/* Zero-size marker on the baseline, used to place the horizon line. */
+.baseline {
+  display: inline-block;
+  width: 0;
+  height: 0;
+}
+
+.role {
+  margin-top: 22px;
+  overflow: hidden;
+  font: 400 clamp(23px, 2.44vw, 36px) / 1.15 var(--font-serif);
+  text-wrap: balance;
+}
+.roleInner {
+  display: block;
+  padding-bottom: 0.08em;
+}
+.role em {
+  font-family: var(--font-serif-italic);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--limestone);
+}
+
+.lead {
+  max-width: 38ch;
+  margin-top: 28px;
+  font: 400 18px/1.6 var(--font-sans);
+  color: rgba(246, 241, 231, 0.9);
+  text-wrap: pretty;
+}
+
+.actions {
+  margin-top: 32px;
+}
+
+/* Foot: location bar with a scroll cue */
+.foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  padding-top: 22px;
+  padding-bottom: 26px;
+  font: 400 12px/1.4 var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--limestone);
+}
+.foot::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 1px;
+  background: var(--rule-ivory);
+}
+.footEnd {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  /* Clear the fixed chat button (56px + its corner offset; see ChatWidget.module.css). */
+  margin-right: max(0px, calc(56px + clamp(16px, 3vw, 32px) + 12px - var(--gutter)));
+}
+/* The cue fades out as soon as the page scrolls (desktop), and only ever loops three times. */
+.scrollCue {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  opacity: calc(1 - var(--p, 0) * 8);
+}
+.cueTrack {
+  position: relative;
+  width: 1px;
+  height: 40px;
+  overflow: hidden;
+  background: rgba(246, 241, 231, 0.25);
+}
+.cueTrack > span {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 40%;
+  background: var(--ivory);
+  transform: translateY(-100%);
+  animation: cue 1.8s ease-in-out 2.4s 3;
+}
+
+/* ==========================================================================
+   Horizon / Aperture opening — driven by html[data-intro]
+   full → full-go → done | skipped      short → short-go → done | skipped
+   Timings scale with --intro-t (1 on desktop, 0.76 on phones ≈ 1.6s total).
+   ========================================================================== */
+.cover,
+.horizonWrap {
+  display: none;
+  pointer-events: none;
+}
+.cover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.coverTop,
+.coverBottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--navy-deep);
+}
+.coverTop {
+  top: 0;
+  height: var(--horizon-y, 62%);
+}
+.coverBottom {
+  top: var(--horizon-y, 62%);
+  bottom: 0;
+}
+.horizonWrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--horizon-y, 62%);
+  z-index: 3;
+}
+.horizon {
+  display: block;
+  height: 1px;
+  background: rgba(246, 241, 231, 0.35);
+  transform-origin: left center;
+}
+
+/* Initial, pre-start state (navy, everything masked) — also held while the font loads. */
+:global(html[data-intro='full']) .cover,
+:global(html[data-intro='full-go']) .cover,
+:global(html[data-intro='skipped']) .cover {
+  display: block;
+}
+:global(html[data-intro='full']) .horizonWrap,
+:global(html[data-intro='full-go']) .horizonWrap {
+  display: block;
+}
+:global(html[data-intro='full']) .horizon {
+  transform: scaleX(0);
+}
+:global(html[data-intro='full']) .nameLine > span:first-child,
+:global(html[data-intro='short']) .nameLine > span:first-child {
+  transform: translateY(130%);
+}
+:global(html[data-intro='full']) .roleInner {
+  transform: translateY(120%);
+}
+:global(html[data-intro='full']) :is(.rule, .lead, .actions, .footText, .scrollCue),
+:global(html[data-intro='short']) :is(.rule, .role, .lead, .actions, .footText) {
+  opacity: 0;
+}
+:global(html[data-intro='full']) .foot::before {
+  opacity: 0;
+}
+:global(html[data-intro='full']) .media :global(img) {
+  transform: scale(1.08);
+}
+
+/* Full sequence */
+:global(html[data-intro='full-go']) .horizon {
+  animation: horizon-draw calc(var(--intro-t) * 500ms) cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+:global(html[data-intro='full-go']) .horizonWrap {
+  animation: horizon-drop calc(var(--intro-t) * 800ms) cubic-bezier(0.7, 0, 0.2, 1) calc(var(--intro-t) * 1100ms) both;
+}
+:global(html[data-intro='full-go']) .nameLine > span:first-child {
+  animation: name-rise calc(var(--intro-t) * 900ms) var(--ease-expo) calc(var(--intro-t) * (250ms + var(--i, 0) * 150ms)) both;
+}
+:global(html[data-intro='full-go']) .coverTop {
+  animation: aperture-up calc(var(--intro-t) * 800ms) cubic-bezier(0.7, 0, 0.2, 1) calc(var(--intro-t) * 1100ms) both;
+}
+:global(html[data-intro='full-go']) .coverBottom {
+  animation: aperture-down calc(var(--intro-t) * 800ms) cubic-bezier(0.7, 0, 0.2, 1) calc(var(--intro-t) * 1100ms) both;
+}
+:global(html[data-intro='full-go']) .media :global(img) {
+  animation: hero-settle calc(var(--intro-t) * 1400ms) var(--ease-expo) calc(var(--intro-t) * 1100ms) both;
+}
+:global(html[data-intro='full-go']) .rule {
+  animation: rule-draw calc(var(--intro-t) * 600ms) var(--ease-expo) calc(var(--intro-t) * 1200ms) both;
+}
+:global(html[data-intro='full-go']) .roleInner {
+  animation: line-rise calc(var(--intro-t) * 700ms) var(--ease-expo) calc(var(--intro-t) * 1300ms) both;
+}
+:global(html[data-intro='full-go']) .lead {
+  animation: fade-rise calc(var(--intro-t) * 600ms) var(--ease-expo) calc(var(--intro-t) * 1420ms) both;
+}
+:global(html[data-intro='full-go']) .actions {
+  animation: fade-rise calc(var(--intro-t) * 600ms) var(--ease-expo) calc(var(--intro-t) * 1540ms) both;
+}
+:global(html[data-intro='full-go']) .footText {
+  animation: fade calc(var(--intro-t) * 500ms) ease calc(var(--intro-t) * 1650ms) both;
+}
+/* The travelling horizon becomes this rule as it lands. */
+:global(html[data-intro='full-go']) .foot::before {
+  animation: fade 1ms linear calc(var(--intro-t) * 1900ms) both;
+}
+:global(html[data-intro='full-go']) .scrollCue {
+  animation: fade calc(var(--intro-t) * 400ms) ease calc(var(--intro-t) * 2050ms) both;
+}
+
+/* Natural end: shutters stay open (no flash). Skip: the navy fades out in 200ms. */
+:global(html[data-intro='skipped']) .coverTop,
+:global(html[data-intro='skipped']) .coverBottom {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Short sequence (returning to Home this session) ≈ 700ms */
+:global(html[data-intro='short-go']) .nameLine > span:first-child {
+  animation: name-rise 600ms var(--ease-expo) calc(var(--i, 0) * 80ms) both;
+}
+:global(html[data-intro='short-go']) .media :global(img) {
+  animation: hero-settle-short 700ms var(--ease-expo) both;
+}
+:global(html[data-intro='short-go']) :is(.rule, .role, .lead, .actions, .footText) {
+  animation: fade 400ms ease 220ms both;
+}
+
+@keyframes horizon-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes horizon-drop {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(var(--foot-dy, 200px));
+    opacity: 0.58; /* 35% → ~20%: matches the resting rule it becomes */
+  }
+}
+@keyframes name-rise {
+  from {
+    transform: translateY(130%) scaleX(1.035);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes aperture-up {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+@keyframes aperture-down {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+@keyframes hero-settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes hero-settle-short {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes line-rise {
+  from {
+    transform: translateY(120%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes cue {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(250%);
+  }
+}
+
+/* Portrait-led variant (enabled once Graham's portrait is supplied) */
+.withPortrait .media {
+  right: auto;
+  width: 58.34%;
+  opacity: 0.15;
+  filter: grayscale(1);
+  mix-blend-mode: luminosity;
+}
+.withPortrait .shade {
+  background: linear-gradient(0deg, rgba(14, 36, 51, 0.6) 0%, rgba(14, 36, 51, 0) 40%);
+}
+.withPortrait .inner {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: clamp(32px, 4vw, 64px);
+}
+.withPortrait .name {
+  font-size: clamp(72px, 9vw, 150px);
+}
+.portrait {
+  margin: 0;
+  align-self: stretch;
+  animation: portrait-reveal 1.1s var(--ease-expo) 0.2s both;
+}
+.portraitFrame {
+  height: 100%;
+  min-height: 420px;
+  aspect-ratio: 4 / 5;
+}
+@keyframes portrait-reveal {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@media (max-width: 899px) {
+  .withPortrait .inner {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 40px;
+  }
+  .withPortrait .media {
+    width: 100%;
+  }
+  .portraitFrame {
+    min-height: 0;
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    padding-top: 120px;
+  }
+  .lead {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 479px) {
+  .actions :global(.btn) {
+    flex: 1 1 100%;
+  }
+  .footEnd > span:first-child {
+    display: none; /* company already appears in the header and footer */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollCue {
+    display: none;
+  }
+}

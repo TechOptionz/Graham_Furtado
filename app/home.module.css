@@ -1,0 +1,109 @@
+/* Home page sections (the hero lives in components/HomeHero.module.css). */
+/* Shared */
+.eyebrowGap {
+  margin-bottom: 40px;
+}
+
+/* Introduction — heading and copy against a tall image */
+.intro {
+  overflow: hidden;
+}
+.introGrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+}
+.introEyebrow {
+  grid-column: 1 / 8;
+  margin-bottom: 40px;
+}
+.introTitle {
+  grid-column: 1 / 8;
+  grid-row: 2;
+  font-size: clamp(40px, 5.2vw, 84px);
+}
+.introCopy {
+  grid-column: 1 / 7;
+  grid-row: 3;
+  margin-top: clamp(40px, 5vw, 72px);
+}
+/* Divider under the heading: draws left → right as the copy arrives. */
+.divider {
+  display: block;
+  height: 1px;
+  margin-bottom: 32px;
+  background: var(--rule-ink);
+}
+.introFrameWrap {
+  overflow: hidden;
+}
+.introLead {
+  margin-bottom: 20px;
+}
+.introBody {
+  margin-bottom: 32px;
+}
+.introFigure {
+  grid-column: 9 / 13;
+  grid-row: 1 / 4;
+  margin: 0;
+  align-self: end;
+}
+.introFrame {
+  aspect-ratio: 4 / 5;
+}
+.caption {
+  margin-top: 14px;
+  font: 400 11px/1.5 var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Featured developments — less limestone below the West End collage (its inset already overhangs). */
+.featuredSection {
+  padding-bottom: clamp(56px, 6vw, 88px);
+}
+.featuredHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 48px;
+  margin-bottom: clamp(40px, 5vw, 72px);
+}
+.featuredTitle {
+  margin-top: 24px;
+  max-width: 760px;
+}
+
+/* Philosophy */
+.philosophySplit {
+  margin-bottom: clamp(56px, 7vw, 96px);
+}
+.philosophyBody {
+  margin-bottom: 28px;
+}
+
+@media (max-width: 859px) {
+  .introEyebrow,
+  .introTitle,
+  .introCopy,
+  .introFigure {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  .introFigure {
+    order: 2;
+    margin-top: 36px;
+  }
+  .introFrame {
+    aspect-ratio: 3 / 2;
+  }
+  .introCopy {
+    order: 3;
+    margin-top: 32px;
+  }
+}
+

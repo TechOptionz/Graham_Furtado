@@ -1,0 +1,216 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(96px, 10vw, 140px);
+}
+
+/* Architectural grid: fine vertical lines at 6% ivory that draw downward, staggered. */
+.grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.grid > span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(246, 241, 231, 0.06);
+  transform-origin: top center;
+  transition: transform 1.4s var(--ease-expo);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--i, 0) * 60ms);
+}
+.grid[data-reveal='pending'] > span {
+  transform: scaleY(0);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Terracotta tab at the top edge, aligned to the content grid; draws into place. */
+.tab {
+  position: absolute;
+  top: calc(-1 * clamp(96px, 10vw, 140px));
+  left: var(--gutter);
+  width: clamp(56px, 8vw, 120px);
+  height: 3px;
+  background: var(--bronze);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: clamp(32px, 4vw, 72px);
+  align-items: end;
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.circa {
+  margin-bottom: 8px;
+  font: italic 500 clamp(18px, 1.6vw, 24px) / 1 var(--font-serif-italic);
+  font-variant-numeric: lining-nums;
+  color: var(--limestone);
+}
+/* "30" rises through a mask rather than counting up. */
+.numeral {
+  display: block;
+  font: 400 clamp(144px, 19.2vw, 288px) / 0.8 var(--font-serif);
+  letter-spacing: -0.02em;
+  color: var(--limestone);
+  font-variant-numeric: lining-nums;
+}
+.numeral :global(.line) {
+  padding-bottom: 0.04em;
+}
+.figureLabel {
+  align-self: stretch;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-ivory);
+  font: 400 12px/1.4 var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--limestone);
+}
+
+.statementCol {
+  padding-bottom: 6px;
+}
+.statement {
+  font: 400 clamp(29px, 3.06vw, 47px) / 1.12 var(--font-serif);
+  letter-spacing: -0.007em;
+  text-wrap: balance;
+}
+.accent {
+  font-family: var(--font-serif-italic);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--limestone);
+}
+.link {
+  margin-top: 32px;
+}
+.link :global(.text-link) {
+  color: var(--ivory);
+}
+
+/*
+ * Timeline (About) — tied to scroll (--p from data-progress="through", default 1):
+ * the line progresses and each milestone lights as the line reaches it.
+ */
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr));
+  gap: 0 clamp(20px, 3vw, 40px);
+  margin: clamp(56px, 7vw, 88px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.timeline::before,
+.timeline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform-origin: left center;
+}
+.timeline::before {
+  background: rgba(246, 241, 231, 0.18);
+}
+.timeline::after {
+  background: var(--bronze);
+  transform: scaleX(var(--p, 1));
+}
+.timeline li {
+  --lit: clamp(0, (var(--p, 1) * var(--n, 4) - var(--i, 0)) * 2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 24px;
+  opacity: calc(0.4 + var(--lit) * 0.6);
+}
+.timeline li::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--bronze);
+  background: var(--olive);
+  transform: translate(-4px, 0) scale(calc(0.6 + var(--lit) * 0.4));
+}
+.timeline li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: var(--bronze);
+  transform: translate(-0.5px, 0) scale(calc(var(--lit) * 5));
+}
+.timelineLabel {
+  font: 400 12px/1.4 var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--limestone);
+}
+.timelineText {
+  font: 400 15px/1.5 var(--font-sans);
+  color: var(--ivory);
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 40px;
+  }
+  .numeral {
+    font-size: clamp(140px, 42vw, 200px);
+  }
+
+  /* Vertical timeline: rule on the left, milestones stacked. */
+  .timeline {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding-left: 28px;
+  }
+  .timeline::before,
+  .timeline::after {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 1px;
+    height: auto;
+    transform-origin: top center;
+  }
+  .timeline::after {
+    transform: scaleY(var(--p, 1));
+  }
+  .timeline li {
+    padding-top: 0;
+  }
+  .timeline li::before {
+    top: 4px;
+    left: -28px;
+  }
+  .timeline li::after {
+    top: 8px;
+    left: -24px;
+  }
+}

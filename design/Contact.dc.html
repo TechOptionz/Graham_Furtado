@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Graham Furtado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#F5F2EC;color:#191A1B;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#191A1B;text-decoration:none}
+a:hover{color:#3D463D}
+input,textarea,button,select{font-family:'Figtree',system-ui,sans-serif}
+select option{background:#F5F2EC;color:#191A1B}
+::selection{background:#DBD1C5;color:#191A1B}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="min-height:100vh;background:#F5F2EC;color:#191A1B;font-family:'Figtree',system-ui,sans-serif">
+<dc-import name="SiteHeader" active="contact" tone="dark" hint-size="100%,0px"></dc-import>
+
+<!-- HERO -->
+<section data-screen-label="Contact hero" style="padding:clamp(150px,18vw,220px) 0 clamp(56px,7vw,96px)">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Contact</div>
+    <h1 style="margin:0 0 32px;max-width:1000px;font:400 clamp(48px,7.2vw,120px)/.96 'Instrument Serif',Georgia,serif;letter-spacing:-.025em;text-wrap:balance">Have a development opportunity?</h1>
+    <p style="margin:0;max-width:520px;font:400 clamp(17px,1.35vw,21px)/1.55 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Let's discuss the site, the opportunity and what comes next.</p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section data-screen-label="Contact form" style="padding:0 0 clamp(88px,11vw,160px)">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:56px 80px;align-items:flex-start">
+    <form onSubmit="{{ submit }}" style="flex:1.2 1 420px;min-width:0;max-width:680px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:36px 40px;padding-top:40px;border-top:1px solid #191A1B">
+      <label style="display:flex;flex-direction:column;gap:10px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Name
+        <input name="name" type="text" autocomplete="name" required style="appearance:none;background:transparent;border:0;border-bottom:1px solid #A99E8F;color:#191A1B;padding:12px 0;font:400 18px/1.4 'Figtree',sans-serif;outline:none;border-radius:0;transition:border-color .3s;min-width:0" style-focus="border-bottom-color:#191A1B">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:10px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Email
+        <input name="email" type="email" autocomplete="email" required style="appearance:none;background:transparent;border:0;border-bottom:1px solid #A99E8F;color:#191A1B;padding:12px 0;font:400 18px/1.4 'Figtree',sans-serif;outline:none;border-radius:0;transition:border-color .3s;min-width:0" style-focus="border-bottom-color:#191A1B">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:10px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Phone
+        <input name="phone" type="tel" autocomplete="tel" style="appearance:none;background:transparent;border:0;border-bottom:1px solid #A99E8F;color:#191A1B;padding:12px 0;font:400 18px/1.4 'Figtree',sans-serif;outline:none;border-radius:0;transition:border-color .3s;min-width:0" style-focus="border-bottom-color:#191A1B">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:10px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Company / Organisation
+        <input name="company" type="text" autocomplete="organization" style="appearance:none;background:transparent;border:0;border-bottom:1px solid #A99E8F;color:#191A1B;padding:12px 0;font:400 18px/1.4 'Figtree',sans-serif;outline:none;border-radius:0;transition:border-color .3s;min-width:0" style-focus="border-bottom-color:#191A1B">
+      </label>
+      <label style="grid-column:1 / -1;display:flex;flex-direction:column;gap:10px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Nature of Enquiry
+        <select name="enquiry" required defaultValue="" style="appearance:none;-webkit-appearance:none;background:transparent;border:0;border-bottom:1px solid #A99E8F;color:#191A1B;padding:12px 0;font:400 18px/1.4 'Figtree',sans-serif;outline:none;border-radius:0;transition:border-color .3s;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,#191A1B 50%),linear-gradient(135deg,#191A1B 50%,transparent 50%);background-position:calc(100% - 10px) 50%,calc(100% - 4px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat" style-focus="border-bottom-color:#191A1B">
+          <option value="" disabled>Select</option>
+          <option value="development-opportunity">Development Opportunity</option>
+          <option value="development-advisory">Development Advisory</option>
+          <option value="property-market">Property / Market Discussion</option>
+          <option value="project-enquiry">Project Enquiry</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+      <label style="grid-column:1 / -1;display:flex;flex-direction:column;gap:10px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Message
+        <textarea name="message" rows="4" style="appearance:none;background:transparent;border:0;border-bottom:1px solid #A99E8F;color:#191A1B;padding:12px 0;font:400 18px/1.4 'Figtree',sans-serif;outline:none;resize:vertical;border-radius:0;transition:border-color .3s;min-width:0" style-focus="border-bottom-color:#191A1B"></textarea>
+      </label>
+      <div style="grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin-top:8px">
+        <button type="submit" style="appearance:none;cursor:pointer;display:inline-flex;align-items:center;background:#191A1B;color:#F5F2EC;padding:18px 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:1px solid #191A1B;transition:background .3s,border-color .3s" style-hover="background:#3D463D;border-color:#3D463D" style-focus="outline:2px solid #9A8060;outline-offset:4px">Start a Conversation</button>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}"><span style="font:400 15px/1.4 'Figtree',sans-serif;color:#3D463D">Thank you. Your message has been noted.</span></sc-if>
+      </div>
+    </form>
+    <div data-reveal="1" style="flex:0 1 400px;min-width:min(100%,260px);margin-left:auto;display:flex;flex-direction:column;gap:32px">
+      <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(170deg,#DBD1C5 0%,#A99E8F 100%);color:#191A1B;overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(25,26,27,.07) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(25,26,27,.04) 0 1px,transparent 1px 28px)"></div>
+        <image-slot id="contact-texture" shape="rect" placeholder="Architectural detail or material texture — concrete, stone, timber" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+      </div>
+      <dl style="margin:0;border-top:1px solid #191A1B">
+        <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Based</dt><dd style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;text-align:right">Queensland, Australia</dd></div>
+        <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Focus</dt><dd style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;text-align:right">Brisbane · South-East Queensland · Bargara</dd></div>
+        <div style="display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Company</dt><dd style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;text-align:right">Furtado Property</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ALTERNATIVE CTA -->
+<section data-screen-label="Alternative CTA" style="background:#DBD1C5;padding:clamp(88px,11vw,144px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 80px">
+    <h2 data-reveal="1" style="margin:0;max-width:760px;font:400 clamp(36px,4.4vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.015em;text-wrap:balance">Interested in Graham's development work?</h2>
+    <a data-reveal="1" href="Developments.dc.html" onClick="{{ go }}" style="display:inline-flex;align-items:center;background:#191A1B;color:#F5F2EC;padding:18px 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:1px solid #191A1B;transition:background .3s,border-color .3s" style-hover="background:#3D463D;border-color:#3D463D;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Explore Developments</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sent: false };
+  rootRef = React.createRef();
+  componentDidMount() {
+    this._reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const root = this.rootRef.current;
+    if (!root || this._reduced || !('IntersectionObserver' in window)) return;
+    const vh = window.innerHeight;
+    const els = Array.from(root.querySelectorAll('[data-reveal]')).filter(el => el.getBoundingClientRect().top > vh * 0.9);
+    els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .9s cubic-bezier(.2,.6,.2,1), transform .9s cubic-bezier(.2,.6,.2,1)'; });
+    this._io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this._io.unobserve(e.target); } }), { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(el => this._io.observe(el));
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+  renderVals() {
+    return {
+      rootRef: this.rootRef,
+      sent: this.state.sent,
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      go: (e) => {
+        const href = e.currentTarget.getAttribute('href');
+        if (!href || e.metaKey || e.ctrlKey) return;
+        e.preventDefault();
+        if (this._reduced) { window.location.href = href; return; }
+        document.body.style.transition = 'opacity .3s ease'; document.body.style.opacity = '0';
+        setTimeout(() => { window.location.href = href; }, 300);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

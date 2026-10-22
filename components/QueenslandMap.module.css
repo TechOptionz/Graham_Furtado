@@ -1,0 +1,137 @@
+.figure {
+  margin: 0;
+  width: 100%;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  /* The continent extends past the frame; only the Queensland window is shown. */
+  overflow: hidden;
+}
+
+.australia {
+  fill: var(--limestone);
+  fill-opacity: 0.45;
+}
+.queensland {
+  fill: var(--limestone);
+}
+.outline {
+  fill: none;
+  stroke: var(--olive);
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.border {
+  fill: none;
+  stroke: var(--olive);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.seq {
+  fill: var(--bronze);
+  fill-opacity: 0.08;
+  stroke: var(--bronze);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+.pin {
+  --pin-active: 0;
+}
+.hit {
+  fill: transparent;
+}
+.ring {
+  fill: none;
+  stroke: var(--bronze);
+  stroke-width: calc(1 + var(--pin-active) * 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: stroke-width var(--dur-fast) var(--ease-out);
+}
+.dot {
+  fill: var(--charcoal);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(calc(1 + var(--pin-active) * 0.45));
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.placeLabel {
+  fill: var(--charcoal);
+  font: 400 20px var(--font-serif);
+}
+.smallLabel {
+  fill: var(--ink-soft);
+  font: 400 11px var(--font-sans);
+  letter-spacing: 0.16em;
+}
+.caption {
+  letter-spacing: 0.18em;
+}
+
+/* Hovering a marker (desktop pointers) highlights it; About's list highlights the matching row. */
+@media (hover: hover) and (pointer: fine) {
+  .pin:hover {
+    --pin-active: 1;
+    cursor: default;
+  }
+}
+
+/* ---------- Scroll-in story (runs once; final state without JS / reduced motion) ---------- */
+.australia,
+.queensland,
+.border,
+.seqGroup,
+.pin,
+.caption {
+  transition: opacity 0.6s var(--ease-expo);
+}
+.outline {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.australia {
+  transition-delay: 0ms;
+}
+.queensland {
+  transition-delay: 900ms;
+}
+.border {
+  transition-delay: 1000ms;
+}
+.seqGroup {
+  transition-delay: 1250ms;
+}
+.brisbane {
+  transition-delay: 1550ms;
+}
+.bargara {
+  transition-delay: 1750ms;
+}
+.caption {
+  transition-delay: 1900ms;
+}
+.brisbane .ring {
+  transition:
+    stroke-width var(--dur-fast) var(--ease-out),
+    transform 0.9s var(--ease-expo) 1650ms,
+    opacity 0.9s var(--ease-expo) 1650ms;
+}
+
+.figure[data-reveal='pending'] :is(.australia, .queensland, .border, .seqGroup, .pin, .caption) {
+  opacity: 0;
+}
+.figure[data-reveal='pending'] .outline {
+  stroke-dashoffset: 1;
+}
+/* Brisbane's ring expands once from a tight ring, then stays still. */
+.figure[data-reveal='pending'] .brisbane .ring {
+  transform: scale(0.3);
+  opacity: 0;
+}
+.seqGroup .seq {
+  stroke-width: calc(1 + var(--pin-active, 0) * 1);
+  transition: stroke-width var(--dur-fast) var(--ease-out);
+}

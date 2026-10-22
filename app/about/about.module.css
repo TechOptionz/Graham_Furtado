@@ -1,0 +1,253 @@
+.eyebrowGap {
+  margin-bottom: 40px;
+}
+.eyebrowGapLg {
+  margin-bottom: 48px;
+}
+.ruledEyebrow {
+  padding-top: 40px;
+  border-top: 1px solid var(--limestone);
+}
+.paraGap {
+  margin-bottom: 20px;
+}
+/* Numerals take their colour from the global .numeral rules (light/dark aware). */
+.bronzeNumeral {
+  font-size: 16px;
+}
+
+/* Hero */
+.hero {
+  padding: var(--hero-top) 0 clamp(72px, 9vw, 128px);
+}
+.heroInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 56px 80px;
+}
+.heroCopy {
+  flex: 1.3 1 460px;
+  min-width: 0;
+}
+.heroTitle {
+  margin-bottom: 40px;
+  font: 400 clamp(39px, 5.38vw, 87px) / 0.98 var(--font-serif);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.heroText {
+  max-width: 620px;
+}
+.heroText > p + p {
+  margin-top: 22px;
+}
+.portrait {
+  flex: 0 1 400px;
+  min-width: min(100%, 260px);
+  margin-left: auto;
+}
+
+/* Professional identity */
+.titles {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.titles li {
+  /* Reading focus (desktop): full ink at the viewport centre, ~45% elsewhere (--p from data-progress="center"). */
+  opacity: calc(0.45 + var(--p, 1) * 0.55);
+  transition: opacity 0.55s var(--ease-expo), transform 0.55s var(--ease-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  padding: 22px 0;
+  border-top: 1px solid var(--rule-ink);
+  font: 400 clamp(29px, 3.36vw, 54px) / 1 var(--font-serif);
+  letter-spacing: -0.005em;
+}
+.titles li[data-reveal='pending'] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.titles li:last-child {
+  border-bottom: 1px solid var(--rule-ink);
+}
+
+/* Current development story */
+.storySplit {
+  margin-bottom: clamp(48px, 6vw, 80px);
+}
+.storyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 40px clamp(24px, 4vw, 64px);
+}
+.storyItem {
+  display: block;
+  padding: 0 0 28px;
+  border-bottom: 1px solid var(--limestone);
+  transition: border-color 0.4s;
+}
+.storyItem:hover {
+  border-bottom-color: var(--bronze);
+}
+.storyMedia {
+  margin-bottom: 24px;
+}
+.storyMedia :global(img) {
+  transition: transform 0.9s var(--ease-editorial);
+}
+.storyItem:hover .storyMedia :global(img) {
+  transform: scale(1.035);
+}
+.storyMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.storyStatus {
+  font: 400 11px/1.4 var(--font-sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: right;
+}
+.storyName {
+  margin-bottom: 8px;
+  font: 400 clamp(27px, 2.52vw, 36px) / 1.05 var(--font-serif);
+}
+.storyDetail {
+  font: 400 15px/1.55 var(--font-sans);
+  color: var(--ink-soft);
+}
+
+/* Geography */
+.geo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 56px 80px;
+}
+.geoCopy {
+  flex: 1 1 380px;
+  min-width: 0;
+}
+.geoTitle {
+  margin-bottom: 28px;
+}
+.geoText {
+  max-width: 520px;
+  margin-bottom: 48px;
+}
+.regions {
+  max-width: 520px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--charcoal);
+}
+.regions li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--limestone);
+}
+.regionName {
+  font: 400 clamp(19px, 1.5vw, 23px) / 1.2 var(--font-serif);
+}
+.regionNote {
+  font: 400 11px/1.6 var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: right;
+}
+.geoMap {
+  flex: 1 1 380px;
+  min-width: 0;
+  max-width: 640px;
+  margin-left: auto;
+}
+
+/* Brand direction */
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 0 clamp(24px, 3vw, 48px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--charcoal);
+}
+.tiers li {
+  padding: 32px 0 40px;
+  border-bottom: 1px solid var(--rule-ink);
+}
+.tierMarker {
+  display: block;
+  margin-bottom: 24px;
+}
+.tierTitle {
+  margin-bottom: 12px;
+  font: 400 clamp(26px, 2.26vw, 34px) / 1.1 var(--font-serif);
+}
+.tierBody {
+  font: 400 15px/1.6 var(--font-sans);
+  color: var(--ink-soft);
+}
+.brand :global(.h2) {
+  max-width: 720px;
+}
+.brandCtas {
+  align-items: center;
+  gap: 20px 32px;
+  margin-top: clamp(56px, 7vw, 96px);
+}
+
+@media (max-width: 899px) {
+  .portrait {
+    margin-left: 0;
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 479px) {
+  .regions li {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .regionNote {
+    text-align: left;
+  }
+  .geoMap {
+    margin-inline: -8px;
+  }
+}
+
+/* Map ↔ place list: hovering a row highlights its marker, and a marker highlights its row. */
+@media (hover: hover) and (pointer: fine) {
+  .regions li {
+    transition: color var(--dur-fast) var(--ease-out);
+    cursor: default;
+  }
+  .regions li .regionName {
+    transition: transform var(--dur-med) var(--ease-expo);
+  }
+  .geo:has([data-pin='brisbane']:hover) [data-place='brisbane'] .regionName,
+  .geo:has([data-pin='bargara']:hover) [data-place='bargara'] .regionName,
+  .geo:has([data-pin='seq']:hover) [data-place='seq'] .regionName,
+  .regions li:hover .regionName {
+    color: var(--bronze-ink);
+    transform: translateX(8px);
+  }
+  .geo:has([data-place='brisbane']:hover) [data-pin='brisbane'],
+  .geo:has([data-place='bargara']:hover) [data-pin='bargara'],
+  .geo:has([data-place='seq']:hover) [data-pin='seq'] {
+    --pin-active: 1;
+  }
+}

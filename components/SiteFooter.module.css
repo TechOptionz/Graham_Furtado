@@ -1,0 +1,149 @@
+.footer {
+  padding: clamp(56px, 7vw, 88px) 0 32px;
+  background: var(--navy-deep);
+  color: var(--ivory);
+  border-top: 1px solid var(--rule-ivory-soft);
+}
+
+/* Row A — role · navigation · contact */
+.rowA {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+  gap: 32px clamp(24px, 4vw, 64px);
+  align-items: start;
+}
+
+.descriptor {
+  max-width: 340px;
+  font: 400 12px/1.9 var(--font-sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--limestone);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 32px;
+}
+
+.link {
+  position: relative;
+  padding: 8px 0;
+  font: 500 13px/1 var(--font-sans);
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+  transition: opacity var(--dur-fast);
+}
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: var(--bronze);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.link:hover {
+  opacity: 1;
+}
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  justify-self: end;
+}
+.contactLink {
+  font: 400 20px/1.3 var(--font-serif);
+}
+.contactCta {
+  color: var(--ivory);
+}
+
+/* Row B — the wordmark spans the container exactly (container query units).
+   --p: 0 as it enters → 1 at the end of the page (data-progress="end"); defaults to 1. */
+.wordmarkWrap {
+  position: relative;
+  container-type: inline-size;
+  margin-top: clamp(48px, 6vw, 88px);
+  padding-top: clamp(20px, 2.4vw, 32px);
+}
+.wordmarkRule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--rule-ivory);
+  transform-origin: left center;
+  transform: scaleX(clamp(0, var(--p, 1) * 2.4, 1));
+}
+.wordmark {
+  display: flex;
+  margin: 0;
+  /* Tuned so "Graham Furtado" spans the container exactly (measured at 100% width, Gilda Display). */
+  font: 400 13.7cqi / 0.82 var(--font-serif);
+  letter-spacing: -0.018em;
+  white-space: nowrap;
+  text-transform: none;
+}
+.wordmarkWord {
+  display: inline-block;
+  overflow: hidden;
+  /* Room for glyph overshoot (tight tracking), cancelled by negative margins so layout is unchanged. */
+  padding: 0 0.06em 0.1em 0;
+  margin: 0 -0.06em -0.1em 0;
+}
+.wordmarkWord + .wordmarkWord {
+  margin-left: 0.22em;
+}
+.wordmarkWord > span {
+  display: inline-block;
+  /* Each word rises out of the rule; the second follows slightly behind. */
+  transform: translateY(calc((1 - clamp(0, (var(--p, 1) - 0.3 - var(--i, 0) * 0.1) / 0.5, 1)) * 115%));
+  will-change: transform;
+}
+
+/* Row C — location · copyright */
+.rowC {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 32px;
+  margin-top: clamp(28px, 3vw, 40px);
+  font: 400 12px/1.6 var(--font-sans);
+  color: var(--taupe);
+}
+
+@media (max-width: 899px) {
+  .rowA {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .descriptor {
+    grid-column: 1 / -1;
+  }
+  .contact {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 559px) {
+  .rowA {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+  }
+}

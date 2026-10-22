@@ -1,0 +1,265 @@
+/* Chapter heading for each group of services */
+.chapter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 24px;
+  margin-bottom: clamp(28px, 3vw, 40px);
+}
+.range {
+  font: italic 500 clamp(18px, 1.6vw, 22px) / 1 var(--font-serif-italic);
+  font-variant-numeric: lining-nums;
+  color: var(--bronze-ink);
+}
+.chapterTitle {
+  font: 400 clamp(31px, 2.88vw, 40px) / 1.05 var(--font-serif);
+  letter-spacing: -0.007em;
+}
+
+/* Below 1100px: one 16:9 image heads the group instead of the sticky panel */
+.groupImage {
+  display: none;
+  margin-bottom: 32px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+}
+.list {
+  grid-column: 1 / 9;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Row: numeral (1–2) · title (3–7) · copy (8–12), vertically centred */
+.row {
+  position: relative;
+  border-bottom: 1px solid var(--rule-ink-soft);
+}
+.row:first-child {
+  border-top: 1px solid var(--rule-ink);
+}
+/* Reveal: the row's top rule draws in, then its contents follow (70ms apart). */
+.row::before,
+.row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform-origin: left center;
+}
+.row::before {
+  top: -1px;
+  background: var(--rule-ink);
+  transform: scaleX(0);
+  opacity: 0;
+}
+.row[data-reveal='pending']::before {
+  opacity: 1;
+}
+.row[data-reveal='shown']::before {
+  opacity: 1;
+  transform: scaleX(1);
+  transition: transform 0.7s var(--ease-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+/* Hover/active: a terracotta rule draws along the bottom edge. */
+.row::after {
+  bottom: -1px;
+  background: var(--bronze);
+  transform: scaleX(0);
+  transition: transform var(--dur-med) var(--ease-expo);
+}
+
+.rowInner {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  align-items: center;
+  padding: clamp(28px, 3vw, 40px) 0;
+  color: inherit;
+}
+.rowInner > * {
+  transition:
+    opacity var(--dur-med) var(--ease-expo),
+    transform var(--dur-med) var(--ease-expo),
+    color var(--dur-fast) var(--ease-out);
+}
+.row[data-reveal='pending'] .rowInner > * {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.row[data-reveal] .numeral {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 0ms);
+}
+.row[data-reveal] .title {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 70ms);
+}
+.row[data-reveal] .copy {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 140ms);
+}
+
+.numeral {
+  grid-column: 1 / 3;
+  font: 400 clamp(37px, 3.86vw, 54px) / 0.85 var(--font-serif);
+  letter-spacing: -0.02em;
+  color: var(--taupe);
+  opacity: 0.6;
+  font-variant-numeric: lining-nums;
+}
+.title {
+  grid-column: 3 / 8;
+  font: 400 clamp(25px, 2.52vw, 36px) / 1.08 var(--font-serif);
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+.copy {
+  grid-column: 8 / 12;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.text {
+  font: 400 16px/1.6 var(--font-sans);
+  color: rgba(14, 36, 51, 0.8);
+  text-wrap: pretty;
+}
+/* Fine print: italic serif, kept dark enough to pass AA at 14px (taupe itself is 2.3:1 on ivory). */
+.note {
+  font: italic 500 14px/1.45 var(--font-serif-italic);
+  font-variant-numeric: lining-nums;
+  color: rgba(14, 36, 51, 0.68);
+}
+.arrow {
+  grid-column: 12 / 13;
+  justify-self: end;
+  font: 400 18px/1 var(--font-sans);
+  color: var(--bronze-ink);
+  opacity: 0;
+  transform: translateX(-6px);
+}
+
+.row[data-active] .numeral,
+.row:hover .numeral,
+.row:focus-within .numeral {
+  color: var(--bronze);
+  opacity: 1;
+}
+@media (hover: hover) {
+  .row:hover::after {
+    transform: scaleX(1);
+  }
+  .row:hover .title {
+    transform: translateX(8px);
+  }
+  .row:hover .arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+.row:focus-within::after {
+  transform: scaleX(1);
+}
+.row:focus-within .arrow {
+  opacity: 1;
+  transform: none;
+}
+
+/* Sticky image panel (≥1100px) */
+.panel {
+  grid-column: 9 / 13;
+  position: sticky;
+  top: 120px;
+}
+.panelFrame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--limestone);
+}
+/* The active image wipes up from the bottom over the previous one (600ms); others wait hidden. */
+.panelImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0s linear 0.6s;
+}
+.panelImage[data-previous] {
+  z-index: 1;
+  clip-path: inset(0);
+  transition: none;
+}
+.panelImage[data-active] {
+  z-index: 2;
+  clip-path: inset(0);
+  transition: clip-path 0.6s var(--ease-expo);
+}
+.panelCaption {
+  animation: caption-in 0.5s var(--ease-out) both;
+  margin-top: 12px;
+  font: 400 11px/1.5 var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 1099px) {
+  .groupImage {
+    display: block;
+  }
+  .list {
+    grid-column: 1 / -1;
+  }
+  .panel {
+    display: none;
+  }
+  .copy {
+    grid-column: 8 / 13;
+  }
+  .arrow {
+    display: none;
+  }
+}
+
+/* Phones: numeral and title share a line, copy below */
+@media (max-width: 699px) {
+  .rowInner {
+    grid-template-columns: 56px minmax(0, 1fr);
+    column-gap: 16px;
+    row-gap: 12px;
+    align-items: baseline;
+  }
+  .numeral {
+    grid-column: 1;
+    font-size: 40px;
+  }
+  .title {
+    grid-column: 2;
+  }
+  .copy {
+    grid-column: 1 / -1;
+  }
+}
+
+@keyframes caption-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The row being read gets a thin bronze rule that grows along its edge. */
+.row[data-active]::after {
+  transform: scaleX(1);
+  transition-duration: 0.9s;
+}

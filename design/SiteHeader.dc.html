@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<header ref="{{ navRef }}" style="position:fixed;top:0;left:0;right:0;z-index:50;padding:28px 0;color:#191A1B;transition:background .45s ease,padding .45s ease,color .45s ease,border-color .45s ease;border-bottom:1px solid transparent">
+  <nav aria-label="Primary" style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="Home.dc.html" onClick="{{ go }}" style="color:inherit;font:600 13px/1 'Figtree',sans-serif;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap" style-focus="outline:2px solid #9A8060;outline-offset:4px">Graham Furtado</a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:clamp(24px,2.6vw,40px)">
+        <a href="About.dc.html" onClick="{{ go }}" style="position:relative;color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s;padding-bottom:6px" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">About<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:0;right:0;bottom:0;height:1px;background:#9A8060"></span></sc-if></a>
+        <a href="Developments.dc.html" onClick="{{ go }}" style="position:relative;color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s;padding-bottom:6px" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">Developments<sc-if value="{{ isDevelopments }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:0;right:0;bottom:0;height:1px;background:#9A8060"></span></sc-if></a>
+        <a href="Expertise.dc.html" onClick="{{ go }}" style="position:relative;color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s;padding-bottom:6px" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">Expertise<sc-if value="{{ isExpertise }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:0;right:0;bottom:0;height:1px;background:#9A8060"></span></sc-if></a>
+        <a href="Approach.dc.html" onClick="{{ go }}" style="position:relative;color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s;padding-bottom:6px" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">Approach<sc-if value="{{ isApproach }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:0;right:0;bottom:0;height:1px;background:#9A8060"></span></sc-if></a>
+        <a href="Contact.dc.html" onClick="{{ go }}" style="position:relative;color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s;padding-bottom:6px" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">Contact<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:0;right:0;bottom:0;height:1px;background:#9A8060"></span></sc-if></a>
+        <a ref="{{ ctaRef }}" href="Contact.dc.html" onClick="{{ go }}" style="color:#191A1B;border:1px solid #191A1B;white-space:nowrap;padding:12px 18px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.16em;text-transform:uppercase;transition:background .3s,color .3s,border-color .3s" style-hover="background:#9A8060;border-color:#9A8060;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Discuss a Development</a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" aria-label="Open menu" onClick="{{ openMenu }}" style="appearance:none;background:transparent;border:0;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:7px;padding:12px;margin:-12px" style-focus="outline:2px solid #9A8060;outline-offset:2px">
+        <span style="display:block;width:28px;height:1.5px;background:currentColor"></span>
+        <span style="display:block;width:28px;height:1.5px;background:currentColor"></span>
+      </button>
+    </sc-if>
+  </nav>
+</header>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-label="Menu" style="position:fixed;inset:0;z-index:60;background:#191A1B;color:#F5F2EC;display:flex;flex-direction:column;padding:28px clamp(20px,5vw,72px) 40px;overflow:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <span style="font:600 13px/1 'Figtree',sans-serif;letter-spacing:.22em;text-transform:uppercase">Graham Furtado</span>
+      <button type="button" aria-label="Close menu" onClick="{{ closeMenu }}" style="appearance:none;background:transparent;border:1px solid rgba(245,242,236,.4);color:#F5F2EC;cursor:pointer;width:48px;height:48px;font:400 22px/1 'Figtree',sans-serif" style-focus="outline:2px solid #9A8060;outline-offset:2px">×</button>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:40px 0">
+      <a href="Home.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(36px,9vw,60px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0;border-bottom:1px solid rgba(245,242,236,.12)" style-focus="outline:2px solid #9A8060;outline-offset:4px">Home</a>
+      <a href="About.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(36px,9vw,60px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0;border-bottom:1px solid rgba(245,242,236,.12)" style-focus="outline:2px solid #9A8060;outline-offset:4px">About</a>
+      <a href="Developments.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(36px,9vw,60px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0;border-bottom:1px solid rgba(245,242,236,.12)" style-focus="outline:2px solid #9A8060;outline-offset:4px">Developments</a>
+      <a href="Expertise.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(36px,9vw,60px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0;border-bottom:1px solid rgba(245,242,236,.12)" style-focus="outline:2px solid #9A8060;outline-offset:4px">Expertise</a>
+      <a href="Approach.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(36px,9vw,60px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0;border-bottom:1px solid rgba(245,242,236,.12)" style-focus="outline:2px solid #9A8060;outline-offset:4px">Approach</a>
+      <a href="Contact.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(36px,9vw,60px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0" style-focus="outline:2px solid #9A8060;outline-offset:4px">Contact</a>
+    </div>
+    <a href="Contact.dc.html" onClick="{{ go }}" style="align-self:flex-start;display:inline-flex;align-items:center;background:#F5F2EC;color:#191A1B;padding:18px 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase" style-focus="outline:2px solid #9A8060;outline-offset:4px">Discuss a Development</a>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;96px&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;about&quot;,&quot;developments&quot;,&quot;expertise&quot;,&quot;approach&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'dark' | 'light'&quot;}}">
+class Component extends DCLogic {
+  state = { vw: typeof window !== 'undefined' ? window.innerWidth : 1280, menuOpen: false };
+  navRef = React.createRef();
+  ctaRef = React.createRef();
+  componentDidMount() {
+    this._reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._onResize = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this._onScroll = () => this.applyScroll();
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._compact = undefined;
+    this.applyScroll();
+  }
+  componentDidUpdate() { this.applyScroll(true); }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this._onScroll);
+  }
+  applyScroll(force) {
+    const nav = this.navRef.current;
+    if (!nav) return;
+    const compact = (window.scrollY || 0) > 80;
+    if (compact === this._compact && !force) return;
+    this._compact = compact;
+    const light = (this.props.tone ?? 'dark') === 'light';
+    nav.style.background = compact ? 'rgba(245,242,236,.94)' : 'transparent';
+    nav.style.backdropFilter = compact ? 'blur(12px)' : 'none';
+    nav.style.padding = compact ? '14px 0' : '28px 0';
+    const ink = compact || !light;
+    nav.style.color = ink ? '#191A1B' : '#F5F2EC';
+    nav.style.borderBottomColor = compact ? 'rgba(25,26,27,.08)' : 'transparent';
+    nav.querySelectorAll('nav a').forEach(a => { a.style.color = ink ? '#191A1B' : '#F5F2EC'; });
+    const cta = this.ctaRef.current;
+    if (cta) cta.style.borderColor = ink ? '#191A1B' : 'rgba(245,242,236,.6)';
+  }
+  renderVals() {
+    const active = (this.props.active ?? '').toLowerCase();
+    const isDesktop = this.state.vw >= 1060;
+    const go = (e) => {
+      const href = e.currentTarget.getAttribute('href');
+      if (!href || e.metaKey || e.ctrlKey) return;
+      e.preventDefault();
+      this.setState({ menuOpen: false });
+      if (this._reduced) { window.location.href = href; return; }
+      document.body.style.transition = 'opacity .3s ease';
+      document.body.style.opacity = '0';
+      setTimeout(() => { window.location.href = href; }, 300);
+    };
+    return {
+      navRef: this.navRef, ctaRef: this.ctaRef, isDesktop, isMobile: !isDesktop,
+      menuOpen: this.state.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      go,
+      isAbout: active === 'about', isDevelopments: active === 'developments', isExpertise: active === 'expertise',
+      isApproach: active === 'approach', isContact: active === 'contact'
+    };
+  }
+}
+</script>
+</body>
+</html>

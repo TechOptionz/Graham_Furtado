@@ -1,0 +1,368 @@
+.eyebrowGap {
+  margin-bottom: 40px;
+}
+
+/* Offset in-page anchors below the fixed header */
+.anchor {
+  scroll-margin-top: 72px;
+}
+
+/* Hero */
+.hero {
+  padding: var(--hero-top) 0 clamp(72px, 9vw, 120px);
+}
+.heroRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px 80px;
+}
+.heroTitle {
+  font: 400 clamp(44px, 6.72vw, 111px) / 0.95 var(--font-serif);
+  letter-spacing: -0.013em;
+}
+.heroLead {
+  max-width: 400px;
+  padding-bottom: clamp(4px, 1vw, 16px);
+  font: 400 clamp(17px, 1.3vw, 20px) / 1.55 var(--font-sans);
+  text-wrap: pretty;
+}
+.heroIndex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin-top: clamp(48px, 6vw, 80px);
+  padding-top: 24px;
+  border-top: 1px solid var(--rule-ink);
+  font: 400 12px/1.6 var(--font-sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.heroIndex a {
+  transition: color 0.3s;
+}
+.heroIndex a:hover {
+  color: var(--bronze-ink);
+}
+
+/* MIRA */
+.miraBanner {
+  --edge: max(var(--gutter), calc((100vw - var(--max-width)) / 2 + var(--gutter)));
+  /* Starts at the content width and opens to full bleed as it arrives (--p: 0 → 1, default 1). */
+  clip-path: inset(0 calc(var(--edge) * (1 - var(--p, 1))));
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 21 / 9;
+  min-height: 360px;
+}
+.miraBanner :global(.badge-group) {
+  top: 24px;
+  left: var(--gutter);
+}
+.miraBody {
+  padding-top: clamp(48px, 6vw, 80px);
+}
+.miraArticle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px 80px;
+}
+.miraIntro {
+  flex: 1 1 360px;
+  min-width: 0;
+}
+.miraDetail {
+  flex: 1.2 1 420px;
+  min-width: 0;
+}
+.location {
+  margin-bottom: 14px;
+  font: 400 12px/1.3 var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.miraTitle {
+  margin-bottom: 10px;
+  font: 400 clamp(40px, 5.04vw, 81px) / 0.95 var(--font-serif);
+  letter-spacing: -0.01em;
+}
+.miraSub {
+  margin-bottom: 32px;
+  font: italic 500 clamp(20px, 1.8vw, 26px) / 1.3 var(--font-serif-italic);
+  font-variant-numeric: lining-nums;
+  color: var(--ink-soft);
+}
+.bigStat {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  max-width: 320px;
+  padding-top: 24px;
+  border-top: 1px solid var(--charcoal);
+}
+.bigStatValue {
+  font: 400 clamp(54px, 5.88vw, 94px) / 0.9 var(--font-serif);
+  letter-spacing: -0.02em;
+}
+.summary {
+  margin-bottom: 36px;
+}
+/* MIRA interiors: one large image beside two stacked. */
+.detailGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: clamp(12px, 1.6vw, 24px);
+  margin-top: clamp(56px, 7vw, 96px);
+}
+.galleryMain {
+  grid-row: span 2;
+}
+
+/* West End planning drawings */
+.drawings {
+  margin-top: clamp(64px, 8vw, 112px);
+  padding-top: 32px;
+  border-top: 1px solid var(--rule-ink);
+}
+.drawingsHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px 32px;
+  margin-bottom: 28px;
+}
+.drawingsNote {
+  font: 400 14px/1.5 var(--font-sans);
+  color: var(--ink-soft);
+}
+
+/* Scale transition */
+.evolutionTitle {
+  max-width: 900px;
+  margin-bottom: clamp(56px, 7vw, 96px);
+}
+.scale {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 32px clamp(40px, 6vw, 96px);
+}
+.scaleItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.scaleValue {
+  font: 400 clamp(77px, 11.2vw, 160px) / 0.9 var(--font-serif);
+  letter-spacing: -0.02em;
+}
+.scaleLabel {
+  margin-top: 20px;
+  font: 400 12px/1.6 var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--limestone);
+}
+.scaleArrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--limestone);
+}
+.scaleLine {
+  display: block;
+  width: clamp(48px, 8vw, 140px);
+  height: 1px;
+  background: currentColor;
+}
+.scaleTo {
+  font: italic 500 28px/1 var(--font-serif-italic);
+  font-variant-numeric: lining-nums;
+}
+.scaleNote {
+  max-width: 600px;
+  margin: clamp(48px, 6vw, 88px) auto 0;
+  text-align: center;
+}
+
+/* West End */
+.westEnd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 48px 80px;
+}
+.westEndMedia {
+  flex: 1 1 380px;
+  min-width: 0;
+}
+@media (min-width: 900px) {
+  .westEndMedia {
+    position: sticky;
+    top: 110px;
+    align-self: flex-start;
+  }
+}
+.westEndDetail {
+  flex: 1.1 1 420px;
+  min-width: 0;
+}
+.westEndTitle {
+  margin-bottom: 28px;
+  font: 400 clamp(34px, 3.86vw, 60px) / 0.98 var(--font-serif);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.statRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 48px;
+  margin-bottom: 32px;
+  padding: 24px 0;
+  border-top: 1px solid var(--charcoal);
+  border-bottom: 1px solid var(--limestone);
+}
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.statValue {
+  font: 400 clamp(40px, 4.2vw, 67px) / 0.9 var(--font-serif);
+  letter-spacing: -0.015em;
+}
+.westEndDetail .summary {
+  margin-bottom: 20px;
+}
+.notice {
+  margin-bottom: 36px;
+  padding: 14px 18px;
+  border: 1px solid var(--limestone);
+  border-left: 3px solid var(--bronze);
+  font: 400 14px/1.5 var(--font-sans);
+  color: var(--ink-soft);
+}
+.teamHeading {
+  margin: 40px 0 16px;
+  font: 400 12px/1 var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+
+/* Future developments */
+.futureHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 48px;
+  margin-bottom: 48px;
+}
+.futureEyebrow {
+  margin-bottom: 28px;
+}
+.futureTitle {
+  font: 400 clamp(31px, 3.42vw, 50px) / 1.05 var(--font-serif);
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+.futureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(16px, 2vw, 32px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.futureCard {
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(120px, 12vw, 180px);
+  padding: 24px;
+  border: 1px solid var(--limestone);
+  font: italic 500 16px/1.3 var(--font-serif-italic);
+  font-variant-numeric: lining-nums;
+  color: var(--ink-soft);
+  background-image: repeating-linear-gradient(0deg, rgba(230, 211, 184, 0.35) 0 1px, transparent 1px 56px);
+}
+
+@media (max-width: 767px) {
+  .detailGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .galleryMain {
+    grid-row: auto;
+    aspect-ratio: 3 / 2;
+  }
+  .miraBanner {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+  .scale {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .scaleArrow {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .scaleLine {
+    width: 1px;
+    height: 32px;
+  }
+  .futureCard {
+    min-height: 96px;
+  }
+}
+
+/* 25 → 113: sequence on arrival (the second value counts up from 25 via CountUp). */
+.valueMask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+}
+.valueMask .scaleValue {
+  display: inline-block;
+  transition: transform 0.9s var(--ease-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.scaleLine {
+  transform-origin: left center;
+  transition: transform 0.7s var(--ease-expo);
+}
+.scaleLine:first-child {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 300ms);
+}
+.scaleLine:last-child {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 650ms);
+}
+.scaleTo {
+  transition: opacity 0.5s ease;
+  transition-delay: calc(var(--reveal-delay, 0ms) + 550ms);
+}
+.scale[data-reveal='pending'] .valueMask .scaleValue {
+  transform: translateY(110%);
+}
+.scale[data-reveal='pending'] .scaleLine {
+  transform: scaleX(0);
+}
+.scale[data-reveal='pending'] .scaleTo {
+  opacity: 0;
+}
+@media (max-width: 767px) {
+  .scaleLine {
+    transform-origin: top center;
+  }
+  .scale[data-reveal='pending'] .scaleLine {
+    transform: scaleY(0);
+  }
+}

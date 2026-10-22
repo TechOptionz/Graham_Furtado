@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<footer style="background:#191A1B;color:#F5F2EC;padding:clamp(56px,7vw,96px) 0 40px">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div style="font:400 clamp(44px,10.4vw,168px)/.9 'Instrument Serif',Georgia,serif;letter-spacing:-.03em;text-transform:uppercase;text-wrap:balance">Graham Furtado</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px 48px;margin-top:clamp(40px,5vw,72px);padding-top:32px;border-top:1px solid rgba(245,242,236,.12)">
+      <p style="margin:0;max-width:420px;font:600 11px/1.9 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#DBD1C5">Property Developer · Real Estate Professional · Development Advisor</p>
+      <nav aria-label="Footer" style="display:flex;flex-wrap:wrap;gap:12px 32px">
+        <a href="About.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">About</a>
+        <a href="Developments.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Developments</a>
+        <a href="Expertise.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Expertise</a>
+        <a href="Approach.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Approach</a>
+        <a href="Contact.dc.html" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Contact</a>
+      </nav>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;margin-top:48px;font:400 12px/1.6 'Figtree',sans-serif;color:#A99E8F">
+      <span>Queensland, Australia</span>
+      <span>© 2026 Graham Furtado · Furtado Property</span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;420px&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      go: (e) => {
+        const href = e.currentTarget.getAttribute('href');
+        if (!href || e.metaKey || e.ctrlKey) return;
+        e.preventDefault();
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { window.location.href = href; return; }
+        document.body.style.transition = 'opacity .3s ease';
+        document.body.style.opacity = '0';
+        setTimeout(() => { window.location.href = href; }, 300);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

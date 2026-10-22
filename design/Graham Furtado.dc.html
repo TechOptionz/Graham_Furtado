@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graham Furtado — Property Developer &amp; Real Estate Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#F5F2EC;color:#191A1B;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#191A1B;text-decoration:none}
+a:hover{color:#3D463D}
+input,textarea,button{font-family:'Figtree',system-ui,sans-serif}
+::selection{background:#DBD1C5;color:#191A1B}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="min-height:100vh;background:#F5F2EC;color:#191A1B;font-family:'Figtree',system-ui,sans-serif">
+
+<!-- NAV -->
+<header ref="{{ navRef }}" style="position:fixed;top:0;left:0;right:0;z-index:50;padding:28px 0;color:#F5F2EC;transition:background .45s ease,padding .45s ease,color .45s ease,border-color .45s ease;border-bottom:1px solid transparent">
+  <nav aria-label="Primary" style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="#top" onClick="{{ go }}" style="color:inherit;font:600 13px/1 'Figtree',sans-serif;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap" style-focus="outline:2px solid #9A8060;outline-offset:4px">Graham Furtado</a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:40px">
+        <a href="#about" onClick="{{ go }}" style="color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">About</a>
+        <a href="#developments" onClick="{{ go }}" style="color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">Developments</a>
+        <a href="#expertise" onClick="{{ go }}" style="color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">Expertise</a>
+        <a href="#approach" onClick="{{ go }}" style="color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">Approach</a>
+        <a href="#contact" onClick="{{ go }}" style="color:inherit;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1" style-focus="outline:2px solid #9A8060;outline-offset:4px">Contact</a>
+        <a href="#contact" onClick="{{ go }}" style="color:inherit;border:1px solid currentColor;padding:12px 18px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.16em;text-transform:uppercase;transition:background .3s,color .3s" style-hover="background:#9A8060;border-color:#9A8060;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Discuss a Development</a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" aria-label="Open menu" onClick="{{ openMenu }}" style="appearance:none;background:transparent;border:0;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:7px;padding:12px;margin:-12px" style-focus="outline:2px solid #9A8060;outline-offset:2px">
+        <span style="display:block;width:28px;height:1.5px;background:currentColor"></span>
+        <span style="display:block;width:28px;height:1.5px;background:currentColor"></span>
+      </button>
+    </sc-if>
+  </nav>
+</header>
+
+<!-- MOBILE MENU -->
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-label="Menu" style="position:fixed;inset:0;z-index:60;background:#191A1B;color:#F5F2EC;display:flex;flex-direction:column;padding:28px clamp(20px,5vw,72px) 40px">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <span style="font:600 13px/1 'Figtree',sans-serif;letter-spacing:.22em;text-transform:uppercase">Graham Furtado</span>
+      <button type="button" aria-label="Close menu" onClick="{{ closeMenu }}" style="appearance:none;background:transparent;border:1px solid rgba(245,242,236,.4);color:#F5F2EC;cursor:pointer;width:48px;height:48px;font:400 22px/1 'Figtree',sans-serif" style-focus="outline:2px solid #9A8060;outline-offset:2px">×</button>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px">
+      <a href="#about" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(40px,10vw,64px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0;border-bottom:1px solid rgba(245,242,236,.12)" style-focus="outline:2px solid #9A8060;outline-offset:4px">About</a>
+      <a href="#developments" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(40px,10vw,64px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0;border-bottom:1px solid rgba(245,242,236,.12)" style-focus="outline:2px solid #9A8060;outline-offset:4px">Developments</a>
+      <a href="#expertise" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(40px,10vw,64px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0;border-bottom:1px solid rgba(245,242,236,.12)" style-focus="outline:2px solid #9A8060;outline-offset:4px">Expertise</a>
+      <a href="#approach" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(40px,10vw,64px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0;border-bottom:1px solid rgba(245,242,236,.12)" style-focus="outline:2px solid #9A8060;outline-offset:4px">Approach</a>
+      <a href="#contact" onClick="{{ go }}" style="color:#F5F2EC;font:400 clamp(40px,10vw,64px)/1.15 'Instrument Serif',Georgia,serif;padding:8px 0" style-focus="outline:2px solid #9A8060;outline-offset:4px">Contact</a>
+    </div>
+    <a href="#contact" onClick="{{ go }}" style="align-self:flex-start;display:inline-flex;align-items:center;background:#F5F2EC;color:#191A1B;padding:18px 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase" style-focus="outline:2px solid #9A8060;outline-offset:4px">Discuss a Development</a>
+  </div>
+</sc-if>
+
+<!-- HERO -->
+<section id="top" data-screen-label="Hero" style="position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;color:#F5F2EC;overflow:hidden;background:#191A1B">
+  <div ref="{{ heroMediaRef }}" style="position:absolute;inset:-12% 0 0 0;will-change:transform">
+    <div style="position:absolute;inset:0;background:linear-gradient(160deg,#3D463D 0%,#262B26 55%,#191A1B 100%)"></div>
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(245,242,236,.05) 0 1px,transparent 1px 96px);opacity:.8"></div>
+    <div style="position:absolute;inset:-60% 0 0 0;color:#F5F2EC">
+      <image-slot id="hero-image" shape="rect" placeholder="Hero image — Queensland architecture or coastline" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+    </div>
+  </div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,26,27,.35) 0%,rgba(25,26,27,0) 35%,rgba(25,26,27,.55) 70%,rgba(25,26,27,.88) 100%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1360px;width:100%;margin:0 auto;padding:160px clamp(20px,5vw,72px) 48px;box-sizing:border-box;pointer-events:none">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:40px 64px">
+      <div style="flex:1.5 1 480px;min-width:0">
+        <p style="margin:0 0 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#DBD1C5">Graham Furtado</p>
+        <h1 style="margin:0;font:400 clamp(48px,7.2vw,112px)/.98 'Instrument Serif',Georgia,serif;letter-spacing:-.015em;text-wrap:balance">Property Developer<br>&amp; Real Estate Professional</h1>
+      </div>
+      <div style="flex:1 1 320px;max-width:460px;pointer-events:auto">
+        <p style="margin:0 0 36px;font:400 clamp(17px,1.35vw,20px)/1.55 'Figtree',sans-serif;color:#F5F2EC;text-wrap:pretty">Building considered residential projects across Queensland, shaped by experience, market knowledge and a long-term approach to development.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px">
+          <a href="#developments" onClick="{{ go }}" style="display:inline-flex;align-items:center;background:#F5F2EC;color:#191A1B;padding:18px 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:1px solid #F5F2EC;transition:background .3s,border-color .3s" style-hover="background:#DBD1C5;border-color:#DBD1C5;color:#191A1B" style-focus="outline:2px solid #9A8060;outline-offset:4px">Explore Developments</a>
+          <a href="#about" onClick="{{ go }}" style="display:inline-flex;align-items:center;background:transparent;color:#F5F2EC;padding:18px 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(245,242,236,.45);transition:border-color .3s" style-hover="border-color:#F5F2EC;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">About Graham</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:64px;padding-top:24px;border-top:1px solid rgba(245,242,236,.2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;font:600 11px/1.4 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#DBD1C5">
+      <span>Brisbane · South-East Queensland · Bargara</span>
+      <span>Furtado Property</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTRODUCTION -->
+<section data-screen-label="Introduction" style="padding:clamp(88px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Introduction</div>
+    <div style="display:flex;flex-wrap:wrap;gap:48px 80px;align-items:flex-start">
+      <h2 data-reveal="1" style="flex:1.2 1 420px;margin:0;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;text-wrap:balance">Experience in property.<br><em style="font-style:italic;color:#3D463D">Perspective</em> in development.</h2>
+      <div data-reveal="1" style="flex:1 1 360px;max-width:560px;padding-top:clamp(0px,1vw,14px)">
+        <p style="margin:0 0 24px;font:400 clamp(17px,1.3vw,20px)/1.6 'Figtree',sans-serif;text-wrap:pretty">Graham Furtado is a Queensland property developer and experienced real-estate professional with around three decades of industry experience.</p>
+        <p style="margin:0;font:400 17px/1.65 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Through Furtado Property, he combines deep market knowledge with residential development experience, guiding projects from site opportunity and early development strategy through design, consultant coordination, construction and market delivery.</p>
+      </div>
+    </div>
+    <div data-reveal="1" style="margin-top:clamp(64px,8vw,120px);padding-top:40px;border-top:1px solid #DBD1C5;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 48px">
+      <div style="display:flex;align-items:baseline;gap:18px">
+        <span style="font:italic 400 clamp(24px,2.4vw,36px)/1 'Instrument Serif',Georgia,serif;color:#9A8060">circa</span>
+        <span style="font:400 clamp(112px,16vw,220px)/.85 'Instrument Serif',Georgia,serif;letter-spacing:-.04em">30</span>
+      </div>
+      <div style="max-width:320px;font:600 11px/1.8 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Years of property experience<br>Around three decades across residential real estate and development</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY / APPROACH -->
+<section id="approach" data-screen-label="Philosophy" style="background:#DBD1C5;padding:clamp(88px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Development philosophy</div>
+    <div style="display:flex;flex-wrap:wrap;gap:40px 80px;align-items:flex-start;margin-bottom:clamp(64px,8vw,112px)">
+      <h2 data-reveal="1" style="flex:1.2 1 420px;margin:0;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;text-wrap:balance">From the right site to the right outcome.</h2>
+      <p data-reveal="1" style="flex:1 1 360px;max-width:560px;margin:0;font:400 17px/1.65 'Figtree',sans-serif;color:#191A1B;text-wrap:pretty">Furtado Property's approach begins with finding the right site. From there, the work is quality design with experienced architects and designers, lasting workmanship, and responsibility for the complete development journey: the contribution a building makes to its surrounding community, and the experience of the people who ultimately live in the homes.</p>
+    </div>
+    <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 clamp(24px,3vw,48px);border-top:1px solid rgba(25,26,27,.2)">
+      <li data-reveal="1" style="padding:36px 0 44px;border-bottom:1px solid rgba(25,26,27,.2)">
+        <div style="font:italic 400 15px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:28px">01</div>
+        <h3 style="margin:0 0 12px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase">Site</h3>
+        <p style="margin:0;font:400 clamp(22px,1.8vw,28px)/1.25 'Instrument Serif',Georgia,serif;text-wrap:pretty">Finding the right opportunity.</p>
+      </li>
+      <li data-reveal="1" style="padding:36px 0 44px;border-bottom:1px solid rgba(25,26,27,.2)">
+        <div style="font:italic 400 15px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:28px">02</div>
+        <h3 style="margin:0 0 12px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase">Strategy</h3>
+        <p style="margin:0;font:400 clamp(22px,1.8vw,28px)/1.25 'Instrument Serif',Georgia,serif;text-wrap:pretty">Understanding the market, location and development potential.</p>
+      </li>
+      <li data-reveal="1" style="padding:36px 0 44px;border-bottom:1px solid rgba(25,26,27,.2)">
+        <div style="font:italic 400 15px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:28px">03</div>
+        <h3 style="margin:0 0 12px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase">Design</h3>
+        <p style="margin:0;font:400 clamp(22px,1.8vw,28px)/1.25 'Instrument Serif',Georgia,serif;text-wrap:pretty">Working with experienced architects and designers.</p>
+      </li>
+      <li data-reveal="1" style="padding:36px 0 44px;border-bottom:1px solid rgba(25,26,27,.2)">
+        <div style="font:italic 400 15px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:28px">04</div>
+        <h3 style="margin:0 0 12px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase">Delivery</h3>
+        <p style="margin:0;font:400 clamp(22px,1.8vw,28px)/1.25 'Instrument Serif',Georgia,serif;text-wrap:pretty">Coordinating specialist teams throughout the development journey.</p>
+      </li>
+      <li data-reveal="1" style="padding:36px 0 44px;border-bottom:1px solid rgba(25,26,27,.2)">
+        <div style="font:italic 400 15px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:28px">05</div>
+        <h3 style="margin:0 0 12px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase">Quality</h3>
+        <p style="margin:0;font:400 clamp(22px,1.8vw,28px)/1.25 'Instrument Serif',Georgia,serif;text-wrap:pretty">Focusing on lasting workmanship and considered design.</p>
+      </li>
+      <li data-reveal="1" style="padding:36px 0 44px;border-bottom:1px solid rgba(25,26,27,.2)">
+        <div style="font:italic 400 15px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:28px">06</div>
+        <h3 style="margin:0 0 12px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase">People</h3>
+        <p style="margin:0;font:400 clamp(22px,1.8vw,28px)/1.25 'Instrument Serif',Georgia,serif;text-wrap:pretty">Creating residential environments around how people ultimately live.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- DEVELOPMENTS -->
+<section id="developments" data-screen-label="Developments" style="padding:clamp(88px,11vw,160px) 0 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Selected developments</div>
+    <div style="display:flex;flex-wrap:wrap;gap:24px 80px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(48px,6vw,80px)">
+      <h2 data-reveal="1" style="margin:0;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">Selected Developments</h2>
+      <p data-reveal="1" style="margin:0;max-width:420px;font:400 17px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Projects that demonstrate the evolution of Graham's development experience.</p>
+    </div>
+
+    <!-- MIRA -->
+    <article data-reveal="1" aria-labelledby="mira-title">
+      <div style="position:relative;aspect-ratio:16/9;background:linear-gradient(165deg,#DBD1C5 0%,#A99E8F 100%);color:#191A1B;overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(25,26,27,.06) 0 1px,transparent 1px 72px)"></div>
+        <image-slot id="mira-hero" shape="rect" placeholder="MIRA Living — oceanfront render or photograph, Bargara" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+        <div style="position:absolute;top:20px;left:20px;display:flex;gap:8px;pointer-events:none">
+          <span style="background:#191A1B;color:#F5F2EC;padding:9px 12px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase">Project 01</span>
+          <span style="background:#F5F2EC;color:#191A1B;padding:9px 12px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase">Nearing completion · Sept 2026</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:40px 80px;padding:48px 0 0;align-items:flex-start">
+        <div style="flex:1 1 360px;min-width:0">
+          <p style="margin:0 0 14px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#3D463D">Bargara, Queensland</p>
+          <h3 id="mira-title" style="margin:0 0 10px;font:400 clamp(44px,5.4vw,88px)/.95 'Instrument Serif',Georgia,serif;letter-spacing:-.02em">MIRA Living</h3>
+          <p style="margin:0;font:italic 400 clamp(20px,1.8vw,26px)/1.3 'Instrument Serif',Georgia,serif;color:#3D463D">Boutique Oceanfront Residential</p>
+        </div>
+        <div style="flex:1.2 1 420px;min-width:0">
+          <p style="margin:0 0 36px;font:400 17px/1.65 'Figtree',sans-serif;text-wrap:pretty">MIRA Living is a boutique oceanfront residential development in Bargara, Queensland. The project represents a clear example of Graham's role in residential development, from site opportunity and product positioning through consultant coordination and delivery.</p>
+          <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0 32px;border-top:1px solid #DBD1C5">
+            <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Scale</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">25 residences</dd></div>
+            <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Address</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">25–27 Esplanade, Bargara</dd></div>
+            <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Developer</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">Furtado Property</dd></div>
+            <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Graham's role</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">Developer, Furtado Property</dd></div>
+            <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Status</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">Under construction, 98% complete (Sept 2026)</dd></div>
+            <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Positioning</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">Premium, owner-occupier oriented coastal living</dd></div>
+          </dl>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- SCALE TRANSITION -->
+  <div data-screen-label="Scale transition" style="background:#3D463D;color:#F5F2EC;margin-top:clamp(88px,11vw,160px);padding:clamp(88px,11vw,160px) 0">
+    <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+      <p data-reveal="1" style="margin:0 0 clamp(48px,6vw,88px);text-align:center;font:600 11px/1.6 'Figtree',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#DBD1C5">From coastal boutique to inner-city scale</p>
+      <div data-reveal="1" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px clamp(40px,6vw,96px)">
+        <div style="text-align:center;flex:0 1 auto">
+          <div style="font:400 clamp(96px,14vw,200px)/.9 'Instrument Serif',Georgia,serif;letter-spacing:-.04em">25</div>
+          <div style="margin-top:20px;font:600 11px/1.6 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#DBD1C5">MIRA Living<br>residences</div>
+        </div>
+        <div aria-hidden="true" style="display:flex;align-items:center;gap:16px;color:#9A8060">
+          <span style="display:block;width:clamp(48px,8vw,140px);height:1px;background:currentColor"></span>
+          <span style="font:italic 400 28px/1 'Instrument Serif',Georgia,serif">to</span>
+          <span style="display:block;width:clamp(48px,8vw,140px);height:1px;background:currentColor"></span>
+        </div>
+        <div style="text-align:center;flex:0 1 auto">
+          <div style="font:400 clamp(96px,14vw,200px)/.9 'Instrument Serif',Georgia,serif;letter-spacing:-.04em">113</div>
+          <div style="margin-top:20px;font:600 11px/1.6 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#DBD1C5">West End<br>apartments proposed</div>
+        </div>
+      </div>
+      <p data-reveal="1" style="margin:clamp(48px,6vw,88px) auto 0;max-width:560px;text-align:center;font:400 17px/1.65 'Figtree',sans-serif;color:#DBD1C5;text-wrap:pretty">A step from a 25-residence coastal project to a proposed 113-apartment inner-city scheme, reflecting increasing scale and complexity in the development work.</p>
+    </div>
+  </div>
+
+  <!-- WEST END -->
+  <div style="max-width:1360px;margin:0 auto;padding:clamp(88px,11vw,160px) clamp(20px,5vw,72px)">
+    <article data-reveal="1" aria-labelledby="westend-title" style="display:flex;flex-wrap:wrap;gap:48px 80px;align-items:flex-start">
+      <div style="flex:1 1 380px;min-width:0;position:relative;aspect-ratio:4/5;background:linear-gradient(200deg,#A99E8F 0%,#3D463D 100%);color:#F5F2EC;overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(245,242,236,.07) 0 1px,transparent 1px 40px),repeating-linear-gradient(0deg,rgba(245,242,236,.05) 0 1px,transparent 1px 40px)"></div>
+        <image-slot id="westend-hero" shape="rect" placeholder="West End — architectural render or Brisbane urban context" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+        <div style="position:absolute;top:20px;left:20px;display:flex;gap:8px;pointer-events:none">
+          <span style="background:#191A1B;color:#F5F2EC;padding:9px 12px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase">Project 02</span>
+          <span style="background:#F5F2EC;color:#191A1B;padding:9px 12px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase">Proposal · Lodged Sept 2026</span>
+        </div>
+      </div>
+      <div style="flex:1.1 1 420px;min-width:0">
+        <p style="margin:0 0 14px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#3D463D">West End, Brisbane</p>
+        <h3 id="westend-title" style="margin:0 0 10px;font:400 clamp(40px,4.6vw,72px)/.98 'Instrument Serif',Georgia,serif;letter-spacing:-.02em;text-wrap:balance">West End Residential Proposal</h3>
+        <p style="margin:0 0 32px;font:italic 400 clamp(20px,1.8vw,26px)/1.3 'Instrument Serif',Georgia,serif;color:#3D463D">A 13-storey residential proposal</p>
+        <p style="margin:0 0 20px;font:400 17px/1.65 'Figtree',sans-serif;text-wrap:pretty">In September 2026, Furtado Property lodged plans for a substantially larger residential scheme in West End, Brisbane, representing a significant step up in development scale from MIRA Living.</p>
+        <p style="margin:0 0 36px;padding:14px 18px;border:1px solid #DBD1C5;font:400 14px/1.5 'Figtree',sans-serif;color:#3D463D">This is a development application lodged with Brisbane City Council, received 9 September 2026. It is a proposal, not a completed or approved development.</p>
+        <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0 32px;border-top:1px solid #DBD1C5">
+          <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Site</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">5 Wolfe Street and 6–8 Greet Street, West End</dd></div>
+          <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Proposed scale</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">13 storeys · 113 apartments</dd></div>
+          <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Apartment mix</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">92 two-bedroom · 21 three-bedroom</dd></div>
+          <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Applicant</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">Furtado Property (FP Margate Pty Ltd)</dd></div>
+          <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Parking &amp; mobility</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">116 car · 5 motorcycle · 142 bicycle spaces proposed</dd></div>
+          <div style="padding:16px 0;border-bottom:1px solid #DBD1C5"><dt style="font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:8px">Status</dt><dd style="margin:0;font:400 16px/1.4 'Figtree',sans-serif">Lodged with Brisbane City Council</dd></div>
+        </dl>
+        <sc-if value="{{ showTeam }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:36px">
+            <p style="margin:0 0 16px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D">Project team</p>
+            <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px 32px;font:400 15px/1.5 'Figtree',sans-serif">
+              <li><span style="color:#3D463D">Architect</span><br>MAS Architecture</li>
+              <li><span style="color:#3D463D">Town planner</span><br>Urbicus</li>
+              <li><span style="color:#3D463D">Landscape</span><br>AS Design</li>
+              <li><span style="color:#3D463D">Traffic / waste</span><br>BMC Traffic</li>
+              <li><span style="color:#3D463D">Civil / stormwater / flood</span><br>CDS</li>
+            </ul>
+          </div>
+        </sc-if>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise" data-screen-label="Expertise" style="border-top:1px solid #DBD1C5;padding:clamp(88px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Expertise</div>
+    <div style="display:flex;flex-wrap:wrap;gap:40px 80px;align-items:flex-start;margin-bottom:clamp(56px,7vw,96px)">
+      <h2 data-reveal="1" style="flex:1.2 1 420px;margin:0;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;text-wrap:balance">Development, from opportunity to delivery.</h2>
+      <p data-reveal="1" style="flex:1 1 360px;max-width:560px;margin:0;font:400 16px/1.65 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">The following areas reflect the work publicly associated with Graham and Furtado Property. They represent a positioning framework rather than confirmation that every area is offered as a standalone engagement.</p>
+    </div>
+    <div style="border-top:1px solid #191A1B">
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 48px;padding:32px 0;border-bottom:1px solid #DBD1C5;transition:padding-left .3s" style-hover="padding-left:12px">
+        <h3 style="margin:0;display:flex;gap:20px;align-items:baseline;font:400 clamp(26px,2.2vw,34px)/1.15 'Instrument Serif',Georgia,serif"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">01</span>Property Development</h3>
+        <p style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Residential development from early opportunity and site stage through design coordination, delivery and market completion.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 48px;padding:32px 0;border-bottom:1px solid #DBD1C5;transition:padding-left .3s" style-hover="padding-left:12px">
+        <h3 style="margin:0;display:flex;gap:20px;align-items:baseline;font:400 clamp(26px,2.2vw,34px)/1.15 'Instrument Serif',Georgia,serif"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">02</span>Residential Development Strategy</h3>
+        <p style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Project direction, target market, product positioning, development priorities and residential offer.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 48px;padding:32px 0;border-bottom:1px solid #DBD1C5;transition:padding-left .3s" style-hover="padding-left:12px">
+        <h3 style="margin:0;display:flex;gap:20px;align-items:baseline;font:400 clamp(26px,2.2vw,34px)/1.15 'Instrument Serif',Georgia,serif"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">03</span>Site Identification &amp; Opportunity Assessment</h3>
+        <p style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Recognising locations and sites with potential and considering market gaps and development fit.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 48px;padding:32px 0;border-bottom:1px solid #DBD1C5;transition:padding-left .3s" style-hover="padding-left:12px">
+        <h3 style="margin:0;display:flex;gap:20px;align-items:baseline;font:400 clamp(26px,2.2vw,34px)/1.15 'Instrument Serif',Georgia,serif"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">04</span>Development Feasibility &amp; Early-Stage Advisory</h3>
+        <div>
+          <p style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">High-level assessment of market fit, site potential, product direction and development opportunity.</p>
+          <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><p style="margin:10px 0 0;font:400 13px/1.5 'Figtree',sans-serif;color:#9A8060">High-level only. Detailed financial or planning services are not implied.</p></sc-if>
+        </div>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 48px;padding:32px 0;border-bottom:1px solid #DBD1C5;transition:padding-left .3s" style-hover="padding-left:12px">
+        <h3 style="margin:0;display:flex;gap:20px;align-items:baseline;font:400 clamp(26px,2.2vw,34px)/1.15 'Instrument Serif',Georgia,serif"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">05</span>Development Management</h3>
+        <p style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Coordinating architects, designers, planners, engineers, builders, sales teams and other project specialists.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 48px;padding:32px 0;border-bottom:1px solid #DBD1C5;transition:padding-left .3s" style-hover="padding-left:12px">
+        <h3 style="margin:0;display:flex;gap:20px;align-items:baseline;font:400 clamp(26px,2.2vw,34px)/1.15 'Instrument Serif',Georgia,serif"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">06</span>Design &amp; Consultant Coordination</h3>
+        <p style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Bringing together specialist teams while maintaining the development vision and end-user outcome.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 48px;padding:32px 0;border-bottom:1px solid #DBD1C5;transition:padding-left .3s" style-hover="padding-left:12px">
+        <h3 style="margin:0;display:flex;gap:20px;align-items:baseline;font:400 clamp(26px,2.2vw,34px)/1.15 'Instrument Serif',Georgia,serif"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">07</span>Property Market Advisory</h3>
+        <p style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Applying long-term real-estate experience to location, buyer, residential-market and product decisions.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 48px;padding:32px 0;border-bottom:1px solid #DBD1C5;transition:padding-left .3s" style-hover="padding-left:12px">
+        <h3 style="margin:0;display:flex;gap:20px;align-items:baseline;font:400 clamp(26px,2.2vw,34px)/1.15 'Instrument Serif',Georgia,serif"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">08</span>Residential Real Estate Advisory</h3>
+        <div>
+          <p style="margin:0;font:400 16px/1.6 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Strategic property guidance informed by extensive real-estate experience.</p>
+          <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><p style="margin:10px 0 0;font:400 13px/1.5 'Figtree',sans-serif;color:#9A8060">Subject to Graham's preferred current service model.</p></sc-if>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVELOPMENT JOURNEY -->
+<section data-screen-label="Development approach" style="background:#DBD1C5;padding:clamp(88px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Development approach</div>
+    <h2 data-reveal="1" style="margin:0 0 clamp(56px,7vw,96px);max-width:900px;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;text-wrap:balance">From site identification to handing over the keys.</h2>
+    <ol data-reveal="1" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:32px 24px">
+      <li style="border-top:1px solid #191A1B;padding-top:20px"><div style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:16px">i</div><div style="font:400 clamp(22px,1.7vw,26px)/1.2 'Instrument Serif',Georgia,serif">Site opportunity</div></li>
+      <li style="border-top:1px solid #191A1B;padding-top:20px"><div style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:16px">ii</div><div style="font:400 clamp(22px,1.7vw,26px)/1.2 'Instrument Serif',Georgia,serif">Development strategy</div></li>
+      <li style="border-top:1px solid #191A1B;padding-top:20px"><div style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:16px">iii</div><div style="font:400 clamp(22px,1.7vw,26px)/1.2 'Instrument Serif',Georgia,serif">Design</div></li>
+      <li style="border-top:1px solid #191A1B;padding-top:20px"><div style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:16px">iv</div><div style="font:400 clamp(22px,1.7vw,26px)/1.2 'Instrument Serif',Georgia,serif">Consultant coordination</div></li>
+      <li style="border-top:1px solid #191A1B;padding-top:20px"><div style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:16px">v</div><div style="font:400 clamp(22px,1.7vw,26px)/1.2 'Instrument Serif',Georgia,serif">Construction</div></li>
+      <li style="border-top:1px solid #191A1B;padding-top:20px"><div style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#3D463D;margin-bottom:16px">vi</div><div style="font:400 clamp(22px,1.7vw,26px)/1.2 'Instrument Serif',Georgia,serif">Market delivery</div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" data-screen-label="About" style="padding:clamp(88px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div style="display:flex;flex-wrap:wrap;gap:56px 80px;align-items:flex-start">
+      <div data-reveal="1" style="flex:0 1 440px;min-width:min(100%,280px);position:relative;aspect-ratio:4/5;background:linear-gradient(170deg,#DBD1C5,#A99E8F);color:#191A1B;overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(25,26,27,.06) 0 1px,transparent 1px 56px)"></div>
+        <image-slot id="portrait" shape="rect" placeholder="Portrait of Graham Furtado — to be supplied" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+      </div>
+      <div style="flex:1 1 440px;min-width:0">
+        <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>About Graham</div>
+        <h2 data-reveal="1" style="margin:0 0 40px;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;text-wrap:balance">A property perspective built over decades.</h2>
+        <div data-reveal="1" style="max-width:600px">
+          <p style="margin:0 0 22px;font:400 clamp(17px,1.3vw,19px)/1.65 'Figtree',sans-serif;text-wrap:pretty">Graham Furtado is a Queensland property developer and experienced real-estate professional with around three decades of industry experience. Through Furtado Property, he combines deep market knowledge with residential development experience, guiding projects from site opportunity and early development strategy through design, consultant coordination, construction and market delivery.</p>
+          <p style="margin:0 0 22px;font:400 17px/1.65 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">His current development story includes MIRA Living, a boutique 25-residence oceanfront project in Bargara, and Furtado Property's recently lodged 113-apartment residential proposal in West End, Brisbane.</p>
+          <p style="margin:0;font:400 17px/1.65 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">His public development approach places strong emphasis on location, enduring design, quality delivery and the experience of the people who will ultimately live in each project.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(80px,10vw,144px)">
+      <div data-reveal="1" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 48px;margin-bottom:40px">
+        <div style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Six pillars</div>
+        <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font:400 13px/1.5 'Figtree',sans-serif;color:#9A8060">Brand direction. Items marked † describe positioning to be confirmed, not confirmed services.</p></sc-if>
+      </div>
+      <ol data-reveal="1" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 clamp(24px,3vw,48px);border-top:1px solid #191A1B">
+        <li style="display:flex;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid #DBD1C5"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">01</span><span style="font:400 clamp(24px,2vw,30px)/1.2 'Instrument Serif',Georgia,serif">Property Development</span></li>
+        <li style="display:flex;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid #DBD1C5"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">02</span><span style="font:400 clamp(24px,2vw,30px)/1.2 'Instrument Serif',Georgia,serif">Development Advisory</span></li>
+        <li style="display:flex;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid #DBD1C5"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">03</span><span style="font:400 clamp(24px,2vw,30px)/1.2 'Instrument Serif',Georgia,serif">Site Acquisition &amp; Feasibility</span></li>
+        <li style="display:flex;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid #DBD1C5"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">04</span><span style="font:400 clamp(24px,2vw,30px)/1.2 'Instrument Serif',Georgia,serif">Real Estate Advisory</span></li>
+        <li style="display:flex;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid #DBD1C5"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">05</span><span style="font:400 clamp(24px,2vw,30px)/1.2 'Instrument Serif',Georgia,serif">Project Strategy &amp; Delivery</span></li>
+        <li style="display:flex;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid #DBD1C5"><span style="font:italic 400 14px/1 'Instrument Serif',Georgia,serif;color:#9A8060;min-width:24px">06</span><span style="font:400 clamp(24px,2vw,30px)/1.2 'Instrument Serif',Georgia,serif">Development Partnerships<sup style="font:400 14px/1 'Figtree',sans-serif;color:#9A8060;margin-left:6px">†</sup></span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- GEOGRAPHY -->
+<section data-screen-label="Geography" style="border-top:1px solid #DBD1C5;padding:clamp(88px,11vw,160px) 0">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:56px 80px;align-items:center">
+    <div style="flex:1 1 380px;min-width:0">
+      <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3D463D;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Geographic focus</div>
+      <h2 data-reveal="1" style="margin:0 0 28px;font:400 clamp(38px,4.6vw,72px)/1.04 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;text-wrap:balance">Queensland, with a focus on opportunity.</h2>
+      <p data-reveal="1" style="margin:0 0 48px;max-width:520px;font:400 17px/1.65 'Figtree',sans-serif;color:#3D463D;text-wrap:pretty">Queensland, particularly Brisbane and South-East Queensland, with development experience extending to Bargara near Bundaberg.</p>
+      <ul data-reveal="1" style="list-style:none;margin:0;padding:0;border-top:1px solid #191A1B;max-width:520px">
+        <li style="display:flex;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid #DBD1C5"><span style="font:400 clamp(20px,1.6vw,24px)/1.2 'Instrument Serif',Georgia,serif">Brisbane</span><span style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#3D463D;text-align:right">West End proposal</span></li>
+        <li style="display:flex;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid #DBD1C5"><span style="font:400 clamp(20px,1.6vw,24px)/1.2 'Instrument Serif',Georgia,serif">South-East Queensland</span><span style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#3D463D;text-align:right">Furtado Property base</span></li>
+        <li style="display:flex;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid #DBD1C5"><span style="font:400 clamp(20px,1.6vw,24px)/1.2 'Instrument Serif',Georgia,serif">Bargara</span><span style="font:600 10px/1.6 'Figtree',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#3D463D;text-align:right">MIRA Living · near Bundaberg</span></li>
+      </ul>
+    </div>
+    <div data-reveal="1" style="flex:1 1 380px;min-width:0;max-width:640px;margin-left:auto">
+      <div ref="{{ mapRef }}" role="img" aria-label="Abstract map of Queensland marking Brisbane, South-East Queensland and Bargara" style="position:relative;width:100%;aspect-ratio:1/1.05"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" data-screen-label="Contact" style="background:#191A1B;color:#F5F2EC;padding:clamp(96px,12vw,176px) 0 clamp(80px,9vw,128px)">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:56px 80px;align-items:flex-start">
+    <div style="flex:1.1 1 400px;min-width:0">
+      <div data-reveal="1" style="display:flex;align-items:center;gap:10px;font:600 11px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#DBD1C5;margin-bottom:40px"><span style="width:6px;height:6px;border-radius:50%;background:#9A8060"></span>Enquiries</div>
+      <h2 data-reveal="1" style="margin:0 0 28px;font:400 clamp(44px,5.6vw,96px)/1 'Instrument Serif',Georgia,serif;letter-spacing:-.02em;text-wrap:balance">Have a development opportunity?</h2>
+      <p data-reveal="1" style="margin:0 0 48px;max-width:460px;font:400 clamp(17px,1.3vw,20px)/1.55 'Figtree',sans-serif;color:#DBD1C5;text-wrap:pretty">Let's discuss the site, the opportunity and what comes next.</p>
+      <a data-reveal="1" href="#developments" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:12px;color:#F5F2EC;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid #9A8060;transition:border-color .3s" style-hover="border-color:#F5F2EC;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Explore Developments</a>
+    </div>
+    <form data-reveal="1" onSubmit="{{ submit }}" style="flex:1 1 380px;max-width:560px;min-width:0;display:flex;flex-direction:column;gap:28px;margin-left:auto">
+      <label style="display:flex;flex-direction:column;gap:10px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#DBD1C5">Name
+        <input name="name" type="text" autocomplete="name" required style="appearance:none;background:transparent;border:0;border-bottom:1px solid rgba(245,242,236,.35);color:#F5F2EC;padding:12px 0;font:400 18px/1.4 'Figtree',sans-serif;outline:none;border-radius:0;transition:border-color .3s" style-focus="border-bottom-color:#9A8060">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:10px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#DBD1C5">Email
+        <input name="email" type="email" autocomplete="email" required style="appearance:none;background:transparent;border:0;border-bottom:1px solid rgba(245,242,236,.35);color:#F5F2EC;padding:12px 0;font:400 18px/1.4 'Figtree',sans-serif;outline:none;border-radius:0;transition:border-color .3s" style-focus="border-bottom-color:#9A8060">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:10px;font:600 10px/1 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#DBD1C5">The site or opportunity
+        <textarea name="message" rows="3" style="appearance:none;background:transparent;border:0;border-bottom:1px solid rgba(245,242,236,.35);color:#F5F2EC;padding:12px 0;font:400 18px/1.4 'Figtree',sans-serif;outline:none;resize:vertical;border-radius:0;transition:border-color .3s" style-focus="border-bottom-color:#9A8060"></textarea>
+      </label>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin-top:8px">
+        <button type="submit" style="appearance:none;cursor:pointer;display:inline-flex;align-items:center;background:#F5F2EC;color:#191A1B;padding:18px 28px;font:600 12px/1 'Figtree',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:1px solid #F5F2EC;transition:background .3s,border-color .3s" style-hover="background:#DBD1C5;border-color:#DBD1C5" style-focus="outline:2px solid #9A8060;outline-offset:4px">Start a Conversation</button>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}"><span style="font:400 14px/1.4 'Figtree',sans-serif;color:#DBD1C5">Thank you. Your message has been noted.</span></sc-if>
+      </div>
+      <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font:400 13px/1.5 'Figtree',sans-serif;color:#A99E8F">Direct contact details to be confirmed before publication.</p></sc-if>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#191A1B;color:#F5F2EC;border-top:1px solid rgba(245,242,236,.12);padding:clamp(56px,7vw,96px) 0 40px">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div style="font:400 clamp(44px,10.4vw,168px)/.9 'Instrument Serif',Georgia,serif;letter-spacing:-.03em;text-transform:uppercase;text-wrap:balance">Graham Furtado</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px 48px;margin-top:clamp(40px,5vw,72px);padding-top:32px;border-top:1px solid rgba(245,242,236,.12)">
+      <p style="margin:0;max-width:420px;font:600 11px/1.9 'Figtree',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#DBD1C5">Property Developer · Real Estate Professional · Development Advisor</p>
+      <nav aria-label="Footer" style="display:flex;flex-wrap:wrap;gap:12px 32px">
+        <a href="#about" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">About</a>
+        <a href="#developments" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Developments</a>
+        <a href="#expertise" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Expertise</a>
+        <a href="#approach" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Approach</a>
+        <a href="#contact" onClick="{{ go }}" style="color:#F5F2EC;font:500 13px/1 'Figtree',sans-serif;letter-spacing:.08em;opacity:.85;transition:opacity .3s" style-hover="opacity:1;color:#F5F2EC" style-focus="outline:2px solid #9A8060;outline-offset:4px">Contact</a>
+      </nav>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;margin-top:48px;font:400 12px/1.6 'Figtree',sans-serif;color:#A99E8F">
+      <span>Queensland, Australia</span>
+      <span>© 2026 Graham Furtado · Furtado Property</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showConfirmationNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showProjectTeam&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;enableMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { vw: typeof window !== 'undefined' ? window.innerWidth : 1280, menuOpen: false, sent: false };
+  rootRef = React.createRef();
+  navRef = React.createRef();
+  heroMediaRef = React.createRef();
+  mapRef = React.createRef();
+
+  componentDidMount() {
+    this._reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._onResize = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this._onScroll = () => this.applyScroll();
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this.applyScroll();
+    this.setupReveal();
+    this.renderMap();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+  }
+
+  applyScroll() {
+    const y = window.scrollY || 0;
+    const nav = this.navRef.current;
+    if (nav) {
+      const compact = y > 80;
+      if (compact !== this._compact) {
+        this._compact = compact;
+        nav.style.background = compact ? 'rgba(245,242,236,.94)' : 'transparent';
+        nav.style.backdropFilter = compact ? 'blur(12px)' : 'none';
+        nav.style.padding = compact ? '14px 0' : '28px 0';
+        nav.style.color = compact ? '#191A1B' : '#F5F2EC';
+        nav.style.borderBottomColor = compact ? 'rgba(25,26,27,.08)' : 'transparent';
+      }
+    }
+    const hero = this.heroMediaRef.current;
+    if (hero && !this._reduced && (this.props.enableMotion ?? true)) {
+      if (y < window.innerHeight * 1.3) hero.style.transform = 'translate3d(0,' + (y * 0.18).toFixed(1) + 'px,0)';
+    }
+  }
+
+  setupReveal() {
+    const root = this.rootRef.current;
+    if (!root) return;
+    const els = Array.from(root.querySelectorAll('[data-reveal]'));
+    const motion = (this.props.enableMotion ?? true) && !this._reduced && 'IntersectionObserver' in window;
+    if (!motion) return;
+    const vh = window.innerHeight;
+    const pending = els.filter(el => el.getBoundingClientRect().top > vh * 0.9);
+    pending.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      el.style.transition = 'opacity .9s cubic-bezier(.2,.6,.2,1), transform .9s cubic-bezier(.2,.6,.2,1)';
+    });
+    this._io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          this._io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    pending.forEach(el => this._io.observe(el));
+  }
+
+  async renderMap() {
+    const host = this.mapRef.current;
+    if (!host) return;
+    for (let i = 0; i < 100 && !(window.d3 && window.topojson); i++) await new Promise(r => setTimeout(r, 100));
+    if (!(window.d3 && window.topojson)) return;
+    const d3 = window.d3;
+    let topo;
+    try {
+      topo = await (await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')).json();
+    } catch (e) { return; }
+    const countries = window.topojson.feature(topo, topo.objects.countries).features;
+    const aus = countries.find(f => f.id === '036' || f.properties.name === 'Australia');
+    if (!aus) return;
+    // Queensland extent: state border approximated by its statutory meridians/parallels; ocean edges are clipped by the coastline.
+    const qld = { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[
+      [153.55, -28.17], [152.5, -28.42], [151.5, -28.85], [150.0, -28.96], [148.95, -29.0], [141.0, -29.0],
+      [141.0, -26.0], [138.0, -26.0], [138.0, -9.5], [155.5, -9.5], [155.5, -28.17], [153.55, -28.17]
+    ]] } };
+    const W = host.clientWidth || 600, H = host.clientHeight || W * 1.05;
+    const proj = d3.geoMercator().fitExtent([[W * 0.08, H * 0.06], [W * 0.92, H * 0.94]], {
+      type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[137.5, -29.5], [137.5, -10.5], [154.5, -10.5], [154.5, -29.5], [137.5, -29.5]]] }
+    });
+    const path = d3.geoPath(proj);
+    const svg = d3.select(host).append('svg').attr('viewBox', '0 0 ' + W + ' ' + H).attr('width', '100%').attr('height', '100%').style('display', 'block');
+    svg.append('defs').append('clipPath').attr('id', 'qld-clip').append('path').attr('d', path(qld));
+    svg.append('path').attr('d', path(aus)).attr('fill', '#DBD1C5').attr('fill-opacity', .45).attr('stroke', 'none');
+    svg.append('path').attr('d', path(aus)).attr('clip-path', 'url(#qld-clip)').attr('fill', '#DBD1C5').attr('stroke', '#3D463D').attr('stroke-width', 1);
+    // state border (land part only)
+    const border = { type: 'LineString', coordinates: [[153.55, -28.17], [152.5, -28.42], [151.5, -28.85], [150.0, -28.96], [148.95, -29.0], [141.0, -29.0], [141.0, -26.0], [138.0, -26.0], [138.0, -16.5]] };
+    svg.append('path').attr('d', path(border)).attr('fill', 'none').attr('stroke', '#3D463D').attr('stroke-width', 1).attr('stroke-dasharray', '2 4');
+    const places = [
+      { name: 'Bargara', sub: 'MIRA Living', lon: 152.46, lat: -24.82, dx: 14, dy: -6 },
+      { name: 'Brisbane', sub: 'West End', lon: 153.03, lat: -27.47, dx: 14, dy: 4 }
+    ];
+    const [bx, by] = proj([153.03, -27.47]);
+    const seqR = Math.abs(proj([153.03, -25.9])[1] - by);
+    svg.append('circle').attr('cx', bx).attr('cy', by).attr('r', seqR).attr('fill', '#9A8060').attr('fill-opacity', .08).attr('stroke', '#9A8060').attr('stroke-width', 1).attr('stroke-dasharray', '3 5');
+    svg.append('text').attr('x', bx - seqR - 8).attr('y', by + 4).attr('text-anchor', 'end').attr('fill', '#3D463D').style('font', "600 10px 'Figtree', sans-serif").style('letter-spacing', '.16em').text('SOUTH-EAST QUEENSLAND');
+    places.forEach(p => {
+      const [x, y] = proj([p.lon, p.lat]);
+      svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 9).attr('fill', 'none').attr('stroke', '#9A8060').attr('stroke-width', 1);
+      svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 3.5).attr('fill', '#191A1B');
+      svg.append('text').attr('x', x + p.dx).attr('y', y + p.dy).attr('fill', '#191A1B').style('font', "400 20px 'Instrument Serif', Georgia, serif").text(p.name);
+      svg.append('text').attr('x', x + p.dx).attr('y', y + p.dy + 16).attr('fill', '#3D463D').style('font', "600 10px 'Figtree', sans-serif").style('letter-spacing', '.14em').text(p.sub.toUpperCase());
+    });
+    svg.append('text').attr('x', W * 0.08).attr('y', H * 0.97).attr('fill', '#A99E8F').style('font', "600 10px 'Figtree', sans-serif").style('letter-spacing', '.18em').text('QUEENSLAND · AUSTRALIA');
+  }
+
+  renderVals() {
+    const vw = this.state.vw;
+    const isDesktop = vw >= 900;
+    const go = (e) => {
+      const href = e.currentTarget.getAttribute('href') || '';
+      if (!href.startsWith('#')) return;
+      e.preventDefault();
+      const target = document.getElementById(href.slice(1));
+      this.setState({ menuOpen: false });
+      if (target) {
+        const top = target.getBoundingClientRect().top + window.scrollY - (href === '#top' ? 0 : 72);
+        window.scrollTo({ top, behavior: this._reduced ? 'auto' : 'smooth' });
+        history.replaceState(null, '', href);
+      }
+    };
+    return {
+      rootRef: this.rootRef, navRef: this.navRef, heroMediaRef: this.heroMediaRef, mapRef: this.mapRef,
+      isDesktop, isMobile: !isDesktop,
+      menuOpen: this.state.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      go,
+      sent: this.state.sent,
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      showNotes: this.props.showConfirmationNotes ?? true,
+      showTeam: this.props.showProjectTeam ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

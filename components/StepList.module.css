@@ -1,0 +1,140 @@
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.marker {
+  display: block;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.description {
+  max-width: 300px;
+  font: 400 15px/1.55 var(--font-sans);
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* Home: six principles, 3 × 2, large terracotta numerals (ivory background).
+   Arrival: rule draws → numeral rises through its mask → title → description. */
+.feature {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(24px, 4vw, 64px);
+}
+.feature .item {
+  position: relative;
+  padding: 28px 0 48px;
+}
+.feature .item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--rule-ink);
+  transform-origin: left center;
+  transition: transform 0.9s var(--ease-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.markerMask {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 28px;
+  padding-bottom: 0.06em;
+}
+.feature .marker {
+  display: inline-block;
+  font-size: clamp(56px, 6vw, 96px);
+  line-height: 0.8;
+  transition: transform 0.8s var(--ease-expo);
+  transition-delay: calc(var(--reveal-delay, 0ms) + 120ms);
+}
+.feature .label,
+.feature .description {
+  transition:
+    opacity 0.6s var(--ease-expo),
+    transform 0.6s var(--ease-expo);
+}
+.feature .label {
+  font-size: clamp(26px, 2.2vw, 34px);
+  line-height: 1.1;
+  transition-delay: calc(var(--reveal-delay, 0ms) + 260ms);
+}
+.feature .description {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 360ms);
+}
+.feature .item[data-reveal='pending']::before {
+  transform: scaleX(0);
+}
+.feature .item[data-reveal='pending'] .marker {
+  transform: translateY(110%);
+}
+.feature .item[data-reveal='pending'] :is(.label, .description) {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* Approach: seven-step journey */
+.journey {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+  gap: 32px 20px;
+}
+.journey .item {
+  padding-top: 20px;
+  border-top: 1px solid var(--charcoal);
+}
+.journey .marker {
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+.journey .label {
+  font-size: clamp(22px, 1.7vw, 26px);
+  line-height: 1.2;
+}
+
+@media (max-width: 899px) {
+  .feature {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Phones: numeral beside text keeps six items compact rather than a tall stack */
+@media (max-width: 599px) {
+  .feature {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .feature .item {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    align-items: start;
+    padding: 22px 0 26px;
+  }
+  .markerMask {
+    margin: 0;
+  }
+  .feature .marker {
+    font-size: 44px;
+  }
+  .journey {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+  }
+}

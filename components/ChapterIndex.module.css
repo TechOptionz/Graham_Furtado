@@ -1,0 +1,86 @@
+.index {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .index {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: block;
+    background: rgba(246, 241, 231, 0.92);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule-ink-soft);
+    /* Sit below the site header while it's showing; slide up when it hides. */
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  :global(html[data-header='shown']) .index {
+    transform: translateY(var(--header-h, 69px));
+  }
+}
+
+.inner {
+  position: relative;
+}
+
+.list {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 clamp(20px, 3vw, 40px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 16px 0 15px;
+  font: 400 12px/1.2 var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.link:hover,
+.link[aria-current] {
+  color: var(--charcoal);
+}
+.number {
+  font: italic 500 15px/1 var(--font-serif-italic);
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--bronze-ink);
+}
+
+/* Travelling indicator: a 1px-wide bar scaled to the active item's width. */
+.indicator {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 1px;
+  height: 2px;
+  background: var(--bronze);
+  transform-origin: left center;
+  opacity: 0;
+  transition:
+    transform var(--dur-med) var(--ease-expo),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+/* Page progress hairline (--p from data-progress="page") */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--bronze);
+  opacity: 0.55;
+  transform-origin: left center;
+  transform: scaleX(var(--p, 0));
+}

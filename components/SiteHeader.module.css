@@ -1,0 +1,297 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  padding: 28px 0;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.45s ease,
+    padding 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease,
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.ink {
+  color: var(--charcoal);
+}
+.ivory {
+  color: var(--ivory);
+}
+
+.compact {
+  padding: 14px 0;
+  background: rgba(246, 241, 231, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom-color: rgba(14, 36, 51, 0.08);
+}
+
+/* Slides away while scrolling down; returns on scroll up or keyboard focus. */
+.hidden {
+  transform: translateY(-100%);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  /* Same serif wordmark as the footer (see SiteFooter.module.css .wordmark), at masthead size. */
+  font: 400 clamp(26px, 2.2vw, 32px) / 1 var(--font-serif);
+  letter-spacing: -0.018em;
+  text-transform: none;
+  white-space: nowrap;
+  /* Optical: Gilda's lowercase sits high, nudge down to centre on the nav links. */
+  padding-top: 0.08em;
+}
+
+.desktopLinks {
+  display: none;
+  align-items: center;
+  gap: clamp(24px, 2.6vw, 40px);
+}
+
+.link {
+  position: relative;
+  padding: 3px 0 6px;
+  font: 500 13px/1 var(--font-sans);
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+  transition: opacity var(--dur-fast);
+}
+.link:hover,
+.link[aria-current='page'] {
+  opacity: 1;
+}
+/* Underline draws in from the left and retracts to the right; the current page keeps it. */
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--bronze);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+.link[aria-current='page']::after {
+  display: none;
+}
+/* The current page's underline: a real element named for view transitions, so it
+   travels from the old nav item to the new one when navigating. */
+.activeLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--bronze);
+  view-transition-name: nav-underline;
+}
+
+/*
+ * Header CTA: an outline over heroes (ivory on dark, navy on light) so it never
+ * competes with the page's own filled button; filled terracotta once the header
+ * is solid. Hover slides the terracotta fill in from the left.
+ */
+.cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 12px 18px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font: 400 12px/1 var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    color 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    background-color 0.35s var(--ease-out);
+}
+.ivory .cta {
+  border-color: rgba(246, 241, 231, 0.7);
+}
+.cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--bronze-button);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.35s var(--ease-out);
+}
+.cta:hover,
+.cta:focus-visible {
+  color: #fff;
+  border-color: var(--bronze-button);
+}
+.cta:hover::before,
+.cta:focus-visible::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+.compact .cta {
+  background: var(--bronze-button);
+  border-color: var(--bronze-button);
+  color: #fff;
+}
+.compact .cta::before {
+  background: var(--bronze-button-hover);
+}
+.ivory .cta:focus-visible {
+  outline-color: var(--limestone);
+}
+
+.menuButton {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  width: 48px;
+  height: 48px;
+  margin: -12px -10px -12px 0;
+  padding: 10px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+.menuButton span {
+  display: block;
+  width: 28px;
+  height: 1.5px;
+  background: currentColor;
+}
+
+@media (min-width: 1060px) {
+  .desktopLinks {
+    display: flex;
+  }
+  .menuButton {
+    display: none;
+  }
+}
+
+/* Full-screen menu */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  padding: 28px var(--gutter) 40px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--charcoal);
+  color: var(--ivory);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
+}
+.menuOpen {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s;
+}
+
+.menuTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.closeButton {
+  appearance: none;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: 1px solid rgba(246, 241, 231, 0.4);
+  color: var(--ivory);
+  font: 400 24px/1 var(--font-sans);
+  cursor: pointer;
+}
+
+.menuLinks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 40px 0;
+  list-style: none;
+}
+.menuLinks li:not(:last-child) {
+  border-bottom: 1px solid var(--rule-ivory-soft);
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0;
+  font: 400 clamp(32px, 8.1vw, 54px) / 1.15 var(--font-serif);
+}
+/* Menu links rise through masks, 45ms apart, led by a bronze numeral. */
+.menuMask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.menuRise {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  transform: translateY(105%);
+  transition: transform 0.2s var(--ease-out);
+}
+.menuOpen .menuRise {
+  transform: none;
+  transition: transform 0.55s var(--ease-expo);
+  transition-delay: calc(80ms + var(--i, 0) * 45ms);
+}
+.menuNum {
+  font: italic 500 16px/1 var(--font-serif-italic);
+  font-variant-numeric: lining-nums;
+  color: var(--bronze-on-dark);
+}
+.menuLink[aria-current='page']::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bronze);
+}
+
+.menuCta {
+  align-self: flex-start;
+}
+
+@media (max-height: 560px) {
+  .menuLink {
+    font-size: 30px;
+  }
+  .menuLinks {
+    padding: 24px 0;
+  }
+}
