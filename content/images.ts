@@ -26,41 +26,59 @@ export interface ImageSlot {
 
 /** Supplied project photography, renders and drawings. */
 const photos = {
-  // MIRA Living, Bargara — photography
-  miraCoastline: {
-    src: '/images/mira-2.jpg',
-    alt: 'Aerial photograph of the Bargara coastline, with its rocky foreshore, beach and coastal residential streets',
+  // MIRA Living, Bargara — completed-building photography supplied 21 Oct 2026 (exported at 2560px, no watermark).
+  // The earlier mira-*.jpg set (1920px, agency watermark) and the dusk render are superseded and no longer referenced.
+  miraAerialDusk: {
+    src: '/images/mira-living-aerial-dusk.jpg',
+    alt: 'Aerial photograph of the completed MIRA Living building at dusk, its apartments lit, with the Bargara coastline behind',
   },
-  miraBuilding: {
-    src: '/images/mira-3.jpg',
-    alt: 'Aerial photograph of the MIRA Living building on the Bargara foreshore',
+  miraCoastSunset: {
+    src: '/images/mira-living-coast-sunset.jpg',
+    alt: 'Aerial photograph of MIRA Living on the Bargara foreshore at sunset, looking out over the ocean',
   },
-  miraLiving: {
-    src: '/images/mira-5.jpg',
-    alt: 'MIRA Living residence: open-plan living room with stone coffee table, leading through to the dining area and kitchen',
+  miraAerialFront: {
+    src: '/images/mira-living-aerial-front.jpg',
+    alt: 'Aerial photograph of the MIRA Living street elevation and landscaped frontage at dusk',
   },
-  miraDining: {
-    src: '/images/mira-6.jpg',
-    alt: 'MIRA Living residence: dining and living area opening onto a balcony through full-height glass doors',
+  miraAerialPortrait: {
+    src: '/images/mira-living-aerial-portrait.jpg',
+    alt: 'Aerial photograph looking down on the MIRA Living building and its palm-lined entry at dusk',
+  },
+  miraStreet: {
+    src: '/images/mira-living-street.jpg',
+    alt: 'The completed MIRA Living building from the street: five storeys of balconies above new garden beds and lawn',
+  },
+  miraEntry: {
+    src: '/images/mira-living-entry.jpg',
+    alt: 'MIRA Living entry: the glazed lobby door beside the building name, with the mail boxes to one side',
+  },
+  miraPool: {
+    src: '/images/mira-living-pool-terrace.jpg',
+    alt: 'MIRA Living pool terrace, the sky and palms reflected in the water, with neighbouring buildings beyond',
+  },
+  miraLivingRoom: {
+    src: '/images/mira-living-living-room.jpg',
+    alt: 'MIRA Living residence: living room with a linen sofa and travertine coffee table, opening to a balcony with ocean views',
   },
   miraKitchen: {
-    src: '/images/mira-1.jpg',
-    alt: 'MIRA Living residence: kitchen with timber joinery and a marble-look island bench',
+    src: '/images/mira-living-kitchen.jpg',
+    alt: 'MIRA Living residence: kitchen with walnut joinery, a stone island bench and bar stools',
   },
   miraBedroom: {
-    src: '/images/mira-8.jpg',
-    alt: 'MIRA Living residence: light-filled bedroom with a linen-dressed bed and timber bedside tables',
+    src: '/images/mira-living-bedroom.jpg',
+    alt: 'MIRA Living residence: bedroom with a linen-dressed bed, bedside lamps and a balcony looking out to the coast',
   },
-  // MIRA Living — earlier render
-  miraFacade: {
-    src: '/images/mira-living-facade-dusk.png',
-    alt: 'Render of MIRA Living, Bargara: the street elevation at dusk, framed by palms',
+  miraBalconyDining: {
+    src: '/images/mira-living-balcony-dining.jpg',
+    alt: 'MIRA Living residence: balcony dining setting with rattan chairs, looking back through to the living room and kitchen',
   },
-
-  /** Construction-stage aerial. Has the MIRA Living logo baked in — use sparingly. */
-  miraConstruction: {
-    src: '/images/mira-living-aerial-bargara.png',
-    alt: 'Aerial photograph of the Bargara coastline marking the MIRA Living site during construction',
+  miraBalconyView: {
+    src: '/images/mira-living-balcony-view.jpg',
+    alt: 'View from a MIRA Living balcony across the foreshore pines to the ocean',
+  },
+  miraDining: {
+    src: '/images/mira-living-dining.jpg',
+    alt: 'MIRA Living residence: dining table and chairs beside the stone island bench, with framed coastal prints',
   },
 
   // West End Residential Proposal, Brisbane — renders and drawings (proposal only).
@@ -111,12 +129,6 @@ const photos = {
     fit: 'contain',
     quality: 90,
   },
-
-  // Illustrative image (not a Furtado Property project).
-  coastalLand: {
-    src: '/images/img-1.jpg',
-    alt: 'Open grassed land among coastal trees, with a residential suburb and the ocean beyond at golden hour',
-  },
 } satisfies Record<string, Omit<ImageSlot, 'label'>>;
 
 
@@ -124,15 +136,15 @@ export const images = {
   // Home
   homeHero: {
     label: 'Approved hero image to be supplied — Queensland architecture, coastline or project',
-    ...photos.miraCoastline,
-    position: 'center 55%',
+    ...photos.miraAerialDusk,
+    position: '42% 45%',
     quality: 90,
   },
-  homeIntro: { label: 'Approved project interior to be supplied', ...photos.miraDining, position: '42% center' },
+  homeIntro: { label: 'Approved project interior to be supplied', ...photos.miraDining },
 
   // Projects
-  miraHero: { label: 'Approved MIRA Living render or photograph to be supplied', ...photos.miraBuilding, position: 'center 45%' },
-  miraDetail1: { label: 'Approved MIRA Living interior to be supplied', ...photos.miraLiving },
+  miraHero: { label: 'Approved MIRA Living render or photograph to be supplied', ...photos.miraStreet, position: 'center 52%', quality: 90 },
+  miraDetail1: { label: 'Approved MIRA Living interior to be supplied', ...photos.miraLivingRoom, position: '55% center' },
   miraDetail2: { label: 'Approved MIRA Living interior to be supplied', ...photos.miraKitchen },
   miraDetail3: { label: 'Approved MIRA Living interior to be supplied', ...photos.miraBedroom },
   westEndHero: {
@@ -160,33 +172,34 @@ export const images = {
   approachStrategy: { label: 'Approved Brisbane residential context image to be supplied', ...photos.westEndTower, position: '40% center' },
   approachDesign: { label: 'Approved architectural detail image to be supplied', ...photos.westEndUndercroft, position: 'center 55%' },
   approachCoordination: { label: 'Approved drawings to be supplied', ...photos.westEndSection },
-  approachDelivery: { label: 'Approved delivery image to be supplied', ...photos.miraBuilding, position: 'center 50%' },
-  approachPeople: { label: 'Approved residential interior to be supplied', ...photos.miraLiving, position: 'center 60%' },
+  approachDelivery: { label: 'Approved delivery image to be supplied', ...photos.miraAerialFront, position: 'center 50%' },
+  approachPeople: { label: 'Approved residential interior to be supplied', ...photos.miraLivingRoom, position: 'center 60%' },
 
   expertiseBreakWide: { label: 'Approved coordination image to be supplied', ...photos.westEndLandscapePlan, position: '40% center' },
   expertiseBreakDetail: { label: 'Approved project detail image to be supplied', ...photos.westEndEntry, position: '55% center' },
 
   // Closing CTA bands
   ctaHome: { label: 'Approved closing image to be supplied', ...photos.westEndFrontage, position: 'center 60%' },
-  ctaDevelopments: { label: 'Approved closing image to be supplied', ...photos.coastalLand, position: 'center 60%' },
-  ctaExpertise: { label: 'Approved closing image to be supplied', ...photos.miraFacade, position: 'center 50%' },
-  ctaApproach: { label: 'Approved closing image to be supplied', ...photos.miraCoastline, position: 'center 60%' },
+  ctaDevelopments: { label: 'Approved closing image to be supplied', ...photos.miraCoastSunset, position: 'center 65%' },
+  ctaExpertise: { label: 'Approved closing image to be supplied', ...photos.miraAerialFront, position: 'center 55%' },
+  ctaApproach: { label: 'Approved closing image to be supplied', ...photos.miraPool, position: 'center 60%' },
 
   // Contact panel: Graham's portrait replaces this once supplied (see app/contact/page.tsx).
-  contactPanel: { label: 'Approved portrait or project image to be supplied', ...photos.miraFacade, position: 'center 50%', quality: 90 },
+  contactPanel: { label: 'Approved portrait or project image to be supplied', ...photos.miraEntry, position: '42% center', quality: 90 },
 
 } satisfies Record<string, ImageSlot>;
 
 /** Expertise: one real project image per core service row, in order (sticky panel on desktop). */
 export const expertiseRowImages: ImageSlot[] = [
-  { label: 'MIRA Living aerial', ...photos.miraBuilding, position: 'center 45%' },
+  { label: 'MIRA Living aerial', ...photos.miraAerialPortrait, position: 'center 45%' },
   { label: 'West End render', ...photos.westEndElevation, position: '50% 40%' },
   { label: 'West End site aerial', ...photos.westEndSite },
-  { label: 'West End landscape plan', ...photos.westEndLandscapePlan },
+  // Not the landscape plan: the specialists break directly below opens with that same drawing.
+  { label: 'MIRA Living coastline at sunset', ...photos.miraCoastSunset, position: '28% 62%' },
   // A construction-stage image would suit this row best; the only one (miraConstruction) has a
   // logo baked in that no 4:5 crop avoids, so a West End render stands in until one is supplied.
   { label: 'West End undercroft render', ...photos.westEndUndercroft, position: '60% center' },
   { label: 'West End building section', ...photos.westEndSection },
-  { label: 'Bargara coastline', ...photos.miraCoastline, position: 'center 60%' },
-  { label: 'MIRA Living interior', ...photos.miraLiving },
+  { label: 'MIRA Living balcony view', ...photos.miraBalconyView, position: 'center 40%' },
+  { label: 'MIRA Living balcony dining', ...photos.miraBalconyDining, position: '38% center' },
 ];
