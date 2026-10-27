@@ -4,6 +4,10 @@ import { images, type ImageSlot } from './images';
  * Project facts, taken verbatim from the research document (section 3).
  * Do not alter figures. West End is a lodged proposal — never describe it as
  * approved, under construction or complete.
+ *
+ * Mount Gravatt: project confirmed, details and imagery to follow from Graham.
+ * Every value marked "to be confirmed" is a placeholder — replace it with the
+ * supplied facts; do not invent figures, status or a consultant team.
  */
 
 export interface ProjectFact {
@@ -20,8 +24,8 @@ export interface Project {
   statusBadge: string;
   /** Longer status line used where a date is shown. */
   statusLine: string;
-  /** Headline count and its unit, e.g. 25 residences. */
-  scale: { value: number; unit: string };
+  /** Headline count and its unit, e.g. 25 residences. Omitted until confirmed. */
+  scale?: { value: number; unit: string };
   summary: string;
   facts: ProjectFact[];
   image: ImageSlot;
@@ -84,5 +88,27 @@ export const westEndStoreys = 13;
 export const westEndNotice =
   'Proposed development. Lodged with Brisbane City Council and received 9 September 2026. Not approved, under construction or completed.';
 
-/** Slots for future projects. None have been announced — do not fill with invented projects. */
-export const futureProjectSlots = ['03', '04', '05'];
+export const mtGravatt: Project = {
+  slug: 'mt-gravatt',
+  number: '03',
+  name: 'Mount Gravatt Residential Project',
+  location: 'Mount Gravatt, Brisbane',
+  statusBadge: 'Details to be confirmed',
+  statusLine: 'Details to be confirmed',
+  summary:
+    'Furtado Property is progressing a residential project in Mount Gravatt, on Brisbane\u2019s southside. Project details, drawings and imagery will be published here once confirmed.',
+  facts: [
+    { label: 'Site', value: 'Mount Gravatt, Brisbane · address to be confirmed' },
+    { label: 'Development type', value: 'Residential · to be confirmed' },
+    { label: 'Proposed scale', value: 'To be confirmed' },
+    { label: 'Developer', value: 'Furtado Property' },
+    { label: 'Status', value: 'To be confirmed' },
+  ],
+  image: images.mtGravattHero,
+};
+
+/** Consultant team for Mount Gravatt. Leave empty until named by Graham. */
+export const mtGravattTeam: ProjectFact[] = [];
+
+export const mtGravattNotice =
+  'Project details, status and imagery to be confirmed. Figures shown on this page for Mount Gravatt are placeholders until supplied.';

@@ -3,7 +3,7 @@ import styles from './QueenslandMap.module.css';
 
 const places = [
   { key: 'bargara', name: 'Bargara', sub: 'MIRA Living', point: map.places.bargara, dx: 14, dy: -6 },
-  { key: 'brisbane', name: 'Brisbane', sub: 'West End', point: map.places.brisbane, dx: 14, dy: 4 },
+  { key: 'brisbane', name: 'Brisbane', sub: 'West End · Mt Gravatt', point: map.places.brisbane, dx: 14, dy: 4 },
 ] as const;
 
 /**
@@ -27,7 +27,7 @@ export function QueenslandMap() {
       >
         <title id="qld-map-title">Map of Queensland</title>
         <desc id="qld-map-desc">
-          Queensland, Australia, marking Brisbane (West End proposal), the South-East Queensland region and Bargara
+          Queensland, Australia, marking Brisbane (West End proposal and Mount Gravatt), the South-East Queensland region and Bargara
           near Bundaberg (MIRA Living).
         </desc>
         <defs>

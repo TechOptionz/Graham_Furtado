@@ -3,7 +3,7 @@ import { DecadesStatement } from '@/components/DecadesStatement';
 import { MediaFrame } from '@/components/MediaFrame';
 import { QueenslandMap } from '@/components/QueenslandMap';
 import { images } from '@/content/images';
-import { mira, westEnd, westEndStoreys } from '@/content/projects';
+import { mira, mtGravatt, westEnd, westEndStoreys } from '@/content/projects';
 import { site } from '@/content/site';
 import { pageMetadata } from '@/lib/metadata';
 import styles from './about.module.css';
@@ -23,12 +23,18 @@ const currentProjects = [
     status: 'Proposal · Lodged Sept 2026',
     detail: `${westEnd.location} · ${westEndStoreys} storeys · 113 apartments proposed`,
   },
+  {
+    number: '03',
+    project: mtGravatt,
+    status: mtGravatt.statusLine,
+    detail: `${mtGravatt.location} · Residential · Details to be confirmed`,
+  },
 ];
 
 /** `place` links a row to its marker on the map (hover either to highlight both). */
 const regions = [
   { name: 'Queensland', note: 'State focus', place: 'qld' },
-  { name: 'Brisbane', note: 'Real estate · West End proposal', place: 'brisbane' },
+  { name: 'Brisbane', note: 'Real estate · West End proposal · Mount Gravatt', place: 'brisbane' },
   { name: 'South-East Queensland', note: 'Furtado Property base', place: 'seq' },
   { name: 'Bargara', note: 'MIRA Living · near Bundaberg', place: 'bargara' },
 ];
@@ -36,7 +42,7 @@ const regions = [
 const brandTiers = [
   { marker: 'i', title: site.name, body: 'Experience, thinking, strategy, relationships and leadership.' },
   { marker: 'ii', title: site.company, body: 'The residential development company, based in South-East Queensland.' },
-  { marker: 'iii', title: 'The projects', body: 'MIRA Living, the West End proposal and the developments that follow.' },
+  { marker: 'iii', title: 'The projects', body: 'MIRA Living, the West End proposal, Mount Gravatt and the developments that follow.' },
 ];
 
 export default function AboutPage() {
@@ -112,12 +118,12 @@ export default function AboutPage() {
           </p>
           <div className={`split ${styles.storySplit}`}>
             <h2 data-reveal id="story-title" className="h2">
-              Two projects, one active development role.
+              Three projects, one active development role.
             </h2>
             <p data-reveal className="body muted">
               His current development story includes MIRA Living, a boutique 25-residence oceanfront project in Bargara,
-              and Furtado Property&rsquo;s recently lodged 113-apartment residential proposal in West End, Brisbane.
-              Together they show Graham operating beyond property sales, with a public role tied to site opportunity,
+              Furtado Property&rsquo;s recently lodged 113-apartment residential proposal in West End, Brisbane, and a
+              residential project in Mount Gravatt, Brisbane, with details to follow. Together they show Graham operating beyond property sales, with a public role tied to site opportunity,
               product positioning, consultant coordination and delivery.
             </p>
           </div>

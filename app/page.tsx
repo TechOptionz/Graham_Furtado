@@ -4,7 +4,7 @@ import { DecadesStatement } from '@/components/DecadesStatement';
 import { HomeHero } from '@/components/HomeHero';
 import { Lines } from '@/components/Lines';
 import { MediaFrame } from '@/components/MediaFrame';
-import { MiraFeature, WestEndFeature } from '@/components/ProjectFeature';
+import { MiraFeature, MtGravattFeature, WestEndFeature } from '@/components/ProjectFeature';
 import { StepList } from '@/components/StepList';
 import { philosophySteps } from '@/content/approach';
 import { images } from '@/content/images';
@@ -78,6 +78,7 @@ export default function HomePage() {
           </div>
           <MiraFeature />
           <WestEndFeature />
+          <MtGravattFeature />
         </div>
       </section>
 

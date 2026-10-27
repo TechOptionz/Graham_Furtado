@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Badge, BadgeGroup } from '@/components/Badge';
 import { CTASection } from '@/components/CTASection';
 import { FactList } from '@/components/FactList';
@@ -11,7 +10,7 @@ import { Parallax } from '@/components/Parallax';
 import { ViewCursor } from '@/components/ViewCursor';
 import { Viewable } from '@/components/Viewable';
 import { images } from '@/content/images';
-import { futureProjectSlots, mira, westEnd, westEndNotice, westEndStoreys, westEndTeam } from '@/content/projects';
+import { mira, mtGravatt, mtGravattNotice, mtGravattTeam, westEnd, westEndNotice, westEndStoreys, westEndTeam } from '@/content/projects';
 import { pageMetadata } from '@/lib/metadata';
 import styles from './developments.module.css';
 
@@ -19,7 +18,7 @@ export const metadata = pageMetadata({
   title: 'Developments',
   path: '/developments',
   description:
-    'MIRA Living, a boutique 25-residence oceanfront development in Bargara, and a proposed 13-storey, 113-apartment residential scheme in West End, Brisbane, lodged by Furtado Property in September 2026.',
+    'MIRA Living, a boutique 25-residence oceanfront development in Bargara, a proposed 13-storey, 113-apartment residential scheme in West End, Brisbane, lodged by Furtado Property in September 2026, and a residential project in Mount Gravatt, Brisbane.',
 });
 
 export default function DevelopmentsPage() {
@@ -43,6 +42,9 @@ export default function DevelopmentsPage() {
             <a href={`#${westEnd.slug}`}>
               {westEnd.number} · {westEnd.name}, Brisbane
             </a>
+            <a href={`#${mtGravatt.slug}`}>
+              {mtGravatt.number} · {mtGravatt.name}, Brisbane
+            </a>
           </nav>
         </div>
       </section>
@@ -54,6 +56,7 @@ export default function DevelopmentsPage() {
         chapters={[
           { id: mira.slug, number: mira.number, label: mira.name },
           { id: westEnd.slug, number: westEnd.number, label: 'West End' },
+          { id: mtGravatt.slug, number: mtGravatt.number, label: 'Mount Gravatt' },
         ]}
       />
 
@@ -79,9 +82,9 @@ export default function DevelopmentsPage() {
               <p className={styles.miraSub}>Boutique Oceanfront Residential</p>
               <div className={styles.bigStat}>
                 <span className={`big-numeral ${styles.bigStatValue}`} data-reveal data-motion="lines">
-                  <Lines lines={[String(mira.scale.value)]} />
+                  <Lines lines={[String(mira.scale?.value)]} />
                 </span>
-                <span className="label">{mira.scale.unit}</span>
+                <span className="label">{mira.scale?.unit}</span>
               </div>
             </div>
             <div data-reveal className={styles.miraDetail}>
@@ -116,7 +119,7 @@ export default function DevelopmentsPage() {
           <div data-reveal data-motion="custom" className={styles.scale}>
             <div className={styles.scaleItem}>
               <span className={styles.valueMask}>
-                <span className={styles.scaleValue}>{mira.scale.value}</span>
+                <span className={styles.scaleValue}>{mira.scale?.value}</span>
               </span>
               <span className={styles.scaleLabel}>
                 MIRA
@@ -130,7 +133,7 @@ export default function DevelopmentsPage() {
               <span className={styles.scaleLine} />
             </div>
             <div className={styles.scaleItem}>
-              <CountUp value={westEnd.scale.value} from={mira.scale.value} delay={950} duration={1200} threshold={0.3} className={styles.scaleValue} />
+              <CountUp value={westEnd.scale?.value ?? 0} from={mira.scale?.value ?? 0} delay={950} duration={1200} threshold={0.3} className={styles.scaleValue} />
               <span className={styles.scaleLabel}>
                 West End
                 <br />
@@ -149,9 +152,9 @@ export default function DevelopmentsPage() {
       {/* Project 02 — West End */}
       <section id={westEnd.slug} className={`section ${styles.anchor}`} aria-labelledby="westend-title">
         <div className="container">
-          <article className={styles.westEnd}>
+          <article className={styles.project}>
             {/* Sticky on desktop while the specification and team scroll alongside. */}
-            <div className={styles.westEndMedia}>
+            <div className={styles.projectMedia}>
               <Viewable image={westEnd.image} caption="West End Residential Proposal — architectural render (proposal)">
                 <MediaFrame
                   image={westEnd.image}
@@ -169,9 +172,9 @@ export default function DevelopmentsPage() {
               </Viewable>
             </div>
             {/* Not animated as a block: the specification and the proposal notice are readable immediately. */}
-            <div className={styles.westEndDetail}>
+            <div className={styles.projectDetail}>
               <p className={styles.location}>{westEnd.location}</p>
-              <h2 id="westend-title" data-reveal className={styles.westEndTitle}>
+              <h2 id="westend-title" data-reveal className={styles.projectTitle}>
                 {westEnd.name}
               </h2>
               <div className={styles.statRow}>
@@ -183,7 +186,7 @@ export default function DevelopmentsPage() {
                 </div>
                 <div className={styles.stat}>
                   <span className={`big-numeral ${styles.statValue}`} data-reveal data-motion="lines">
-                    <Lines lines={[String(westEnd.scale.value)]} />
+                    <Lines lines={[String(westEnd.scale?.value)]} />
                   </span>
                   <span className="label">
                     Apartments
@@ -217,27 +220,61 @@ export default function DevelopmentsPage() {
         </div>
       </section>
 
-      {/* Future developments */}
-      <section className="section rule-top" aria-labelledby="future-title">
+      {/* Project 03 — Mount Gravatt (details and imagery to be supplied; placeholders render until then) */}
+      <section id={mtGravatt.slug} className={`section rule-top ${styles.anchor}`} aria-labelledby="mtgravatt-title">
         <div className="container">
-          <div data-reveal className={styles.futureHead}>
-            <div>
-              <p className={`eyebrow ${styles.futureEyebrow}`}>Future developments</p>
-              <h2 id="future-title" className={styles.futureTitle}>
-                Further projects to be announced.
-              </h2>
+          <article className={styles.project}>
+            <div className={styles.projectMedia}>
+              <Viewable image={mtGravatt.image} caption="Mount Gravatt Residential Project — image to be supplied">
+                <MediaFrame image={mtGravatt.image} aspect="4/5" tone="teal" pattern="grid" sizes="(min-width: 900px) 80vw, 180vw">
+                  <BadgeGroup>
+                    <Badge variant="dark">Project {mtGravatt.number}</Badge>
+                    <Badge>{mtGravatt.statusBadge}</Badge>
+                  </BadgeGroup>
+                </MediaFrame>
+              </Viewable>
             </div>
-            <Link href="/contact" className="text-link">
-              Discuss a site
-            </Link>
+            <div className={styles.projectDetail}>
+              <p className={styles.location}>{mtGravatt.location}</p>
+              <h2 id="mtgravatt-title" data-reveal className={styles.projectTitle}>
+                {mtGravatt.name}
+              </h2>
+              {mtGravatt.scale && (
+                <div className={styles.statRow}>
+                  <div className={styles.stat}>
+                    <span className={`big-numeral ${styles.statValue}`} data-reveal data-motion="lines">
+                      <Lines lines={[String(mtGravatt.scale.value)]} />
+                    </span>
+                    <span className="label">{mtGravatt.scale.unit}</span>
+                  </div>
+                </div>
+              )}
+              <p className={`body ${styles.summary}`}>{mtGravatt.summary}</p>
+              <p className={styles.notice} role="note">
+                {mtGravattNotice}
+              </p>
+              <FactList facts={mtGravatt.facts} />
+              {mtGravattTeam.length > 0 && (
+                <>
+                  <h3 className={styles.teamHeading}>Project team</h3>
+                  <FactList facts={mtGravattTeam} minColumn={180} />
+                </>
+              )}
+            </div>
+          </article>
+          <div className={styles.drawings}>
+            <p data-reveal className={styles.drawingsHead}>
+              <span className="eyebrow">Drawings</span>
+              <span className={styles.drawingsNote}>Drawings to be supplied</span>
+            </p>
+            <DrawingGallery
+              drawings={[
+                { image: images.mtGravattDrawing1, caption: 'Site plan' },
+                { image: images.mtGravattDrawing2, caption: 'Landscape plan' },
+                { image: images.mtGravattDrawing3, caption: 'Building section' },
+              ]}
+            />
           </div>
-          <ul data-reveal className={styles.futureGrid}>
-            {futureProjectSlots.map((n) => (
-              <li key={n} className={styles.futureCard}>
-                <span>{n} · Project to be announced</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

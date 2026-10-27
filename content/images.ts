@@ -145,6 +145,13 @@ export const images = {
   westEndLandscapePlan: { label: 'Landscape plan to be supplied', ...photos.westEndLandscapePlan, fit: 'contain' },
   westEndSection: { label: 'Building section to be supplied', ...photos.westEndSection, fit: 'contain' },
 
+  // Mount Gravatt — imagery to be supplied by Graham (placeholders render until then).
+  mtGravattHero: { label: 'Approved Mount Gravatt render or site image to be supplied' },
+  mtGravattDetail: { label: 'Approved Mount Gravatt detail image to be supplied' },
+  mtGravattDrawing1: { label: 'Mount Gravatt site plan to be supplied', fit: 'contain' },
+  mtGravattDrawing2: { label: 'Mount Gravatt landscape plan to be supplied', fit: 'contain' },
+  mtGravattDrawing3: { label: 'Mount Gravatt building section to be supplied', fit: 'contain' },
+
   // About
   portrait: { label: 'Approved Graham Furtado portrait to be supplied' },
 

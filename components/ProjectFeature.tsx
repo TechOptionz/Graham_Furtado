@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { images } from '@/content/images';
-import { mira, westEnd, westEndStoreys } from '@/content/projects';
+import { mira, mtGravatt, westEnd, westEndStoreys } from '@/content/projects';
 import { Badge, BadgeGroup } from './Badge';
 import { Lines } from './Lines';
 import { MediaFrame } from './MediaFrame';
@@ -34,9 +34,7 @@ export function MiraFeature() {
           <dl className={styles.facts}>
             <div>
               <dt>Scale</dt>
-              <dd>
-                {mira.scale.value} residences
-              </dd>
+              <dd>{mira.scale?.value} residences</dd>
             </div>
             <div>
               <dt>Status</dt>
@@ -74,7 +72,7 @@ export function WestEndFeature() {
             </p>
             <p>
               <span className="big-numeral" data-reveal data-motion="lines">
-                <Lines lines={[String(westEnd.scale.value)]} />
+                <Lines lines={[String(westEnd.scale?.value)]} />
               </span>
               <span className="label">Apartments proposed</span>
             </p>
@@ -92,6 +90,46 @@ export function WestEndFeature() {
           </div>
           <div data-reveal data-motion="image" className={styles.splitInset}>
             <MediaFrame image={images.westEndDetail} aspect="4/5" tone="sand" pattern="none" sizes="380px" />
+          </div>
+        </div>
+      </Link>
+    </article>
+  );
+}
+
+/** Mount Gravatt project: same split as West End, with placeholders until details and imagery are supplied. */
+export function MtGravattFeature() {
+  return (
+    <article className={styles.split} aria-labelledby="feature-mtgravatt">
+      <Link href={`/developments#${mtGravatt.slug}`} className={styles.splitLink}>
+        <div data-reveal className={styles.splitText}>
+          <span className="numeral">{mtGravatt.number}</span>
+          <h3 id="feature-mtgravatt" className={styles.name}>
+            {mtGravatt.name}
+          </h3>
+          <p className={styles.location}>{mtGravatt.location}</p>
+          {mtGravatt.scale && (
+            <div className={styles.stats}>
+              <p>
+                <span className="big-numeral" data-reveal data-motion="lines">
+                  <Lines lines={[String(mtGravatt.scale.value)]} />
+                </span>
+                <span className="label">{mtGravatt.scale.unit}</span>
+              </p>
+            </div>
+          )}
+          <p className={styles.status}>{mtGravatt.statusLine}</p>
+          <ViewLabel />
+        </div>
+        <div className={styles.splitVisual} data-progress="view" data-progress-min="900">
+          <div data-reveal data-motion="image" className={styles.splitMedia}>
+            <MediaFrame image={mtGravatt.image} aspect="1/1" tone="teal" sizes="(min-width: 900px) 70vw, 145vw" />
+            <BadgeGroup>
+              <Badge>{mtGravatt.statusBadge}</Badge>
+            </BadgeGroup>
+          </div>
+          <div data-reveal data-motion="image" className={styles.splitInset}>
+            <MediaFrame image={images.mtGravattDetail} aspect="4/5" tone="sand" pattern="none" sizes="380px" />
           </div>
         </div>
       </Link>

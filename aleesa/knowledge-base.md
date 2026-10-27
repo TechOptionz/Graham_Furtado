@@ -160,9 +160,17 @@ specialist consultants on each project and coordinated by Graham's team.
 - Not for sale; no pricing, register of interest or timeline confirmed.
   [CONFIRM WITH GRAHAM: whether a register of interest exists]
 
-### Future projects
-None announced. The bot should say: "No further projects have been announced
-yet."
+### Mount Gravatt Residential Project — Brisbane
+- Residential project by Furtado Property in Mount Gravatt, on Brisbane's
+  southside. Project details (address, scale, type, status, consultant team)
+  and imagery are to be confirmed by Graham. [CONFIRM WITH GRAHAM]
+- Until confirmed, the bot should say: "Furtado Property has a residential
+  project in Mount Gravatt, Brisbane. Details will be published once confirmed."
+- Do not state figures, status, pricing or a timeline for Mount Gravatt.
+
+### Further projects
+None beyond the three above. The bot should say: "No further projects have been
+announced yet."
 
 ---
 
