@@ -143,8 +143,7 @@ specialist consultants on each project and coordinated by Graham's team.
 - Address: 25–27 Esplanade, Bargara, Queensland.
 - Developer: Furtado Property.
 - Positioning: premium, owner-occupier oriented coastal living.
-- Status: under construction and nearing completion; the MIRA website showed
-  98% complete and states completion in September 2026.
+- Status: completed (2026). Confirmed by Furtado Property, 28 October 2026.
 - Sales, prices, availability, inspections: refer to the MIRA Living sales
   team / website. [CONFIRM WITH GRAHAM: MIRA website link to share]
 
@@ -213,8 +212,8 @@ to. Items marked [CONFIRM WITH GRAHAM] need a real answer before going live.
 - **No advice:** the assistant and website do not provide financial, legal,
   tax, planning or investment advice. Visitors should seek independent
   professional advice.
-- **Project status:** West End is a proposal only. MIRA Living status reflects
-  the MIRA website as of September 2026.
+- **Project status:** West End is a proposal only. MIRA Living is complete
+  (confirmed by Furtado Property, 28 October 2026).
 - **Enquiries:** enquiries are reviewed by Graham's team.
   Response time: [CONFIRM WITH GRAHAM]
 - **Privacy:** personal details shared in the chat or contact form (name, email,
@@ -299,8 +298,7 @@ A: MIRA Living is a boutique oceanfront development of 25 residences at
 positioned as premium, owner-occupier oriented coastal living.
 
 **Q: When will MIRA Living be finished?**
-A: It's nearing completion. The MIRA website showed it 98% complete and states
-completion in September 2026.
+A: MIRA Living is complete. The building was finished in 2026.
 
 **Q: Are MIRA Living apartments available? What do they cost?**
 A: For availability, prices and inspections, please contact the MIRA Living

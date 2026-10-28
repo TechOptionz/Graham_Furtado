@@ -210,6 +210,14 @@ export const images = {
 
   // About
   portrait: { label: 'Approved Graham Furtado portrait to be supplied' },
+  // TODO(assets): temporary stand-in for the About page only (added 28 Oct 2026) — MIRA Living
+  // photography, never presented as Graham. The About page drops it automatically once
+  // `portrait` has a src; Home and Contact still key off `portrait` alone.
+  aboutInterim: {
+    label: 'Approved Graham Furtado portrait to be supplied',
+    ...photos.miraAerialPortrait,
+    position: 'center 45%',
+  },
 
   // Approach
   approachSite: { label: 'Approved site image to be supplied', ...photos.westEndSite },

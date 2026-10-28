@@ -37,8 +37,9 @@ export const mira: Project = {
   number: '01',
   name: 'MIRA Living',
   location: 'Bargara, Queensland',
-  statusBadge: 'Nearing completion',
-  statusLine: 'Nearing completion · Sept 2026',
+  // Status updated to completed on the client's instruction (28 Oct 2026).
+  statusBadge: 'Completed',
+  statusLine: 'Completed · 2026',
   scale: { value: 25, unit: 'Residences' },
   summary:
     "MIRA Living is a boutique oceanfront residential development in Bargara, Queensland. The project represents a clear example of Graham's role in residential development, from site opportunity and product positioning through consultant coordination and delivery.",
@@ -47,8 +48,7 @@ export const mira: Project = {
     { label: 'Development type', value: 'Boutique oceanfront residential apartments' },
     { label: 'Developer', value: 'Furtado Property' },
     { label: "Graham's public role", value: 'Developer, Furtado Property' },
-    { label: 'Status', value: 'Under construction; the MIRA website showed 98% complete in September 2026' },
-    { label: 'Completion messaging', value: 'The MIRA website states completion September 2026' },
+    { label: 'Status', value: 'Completed 2026' },
     { label: 'Positioning', value: 'Premium, owner-occupier oriented coastal living' },
   ],
   image: images.miraHero,

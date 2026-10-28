@@ -16,6 +16,6 @@ export interface Milestone {
 export const milestones: Milestone[] = [
   { label: 'Brisbane', text: 'Residential real estate' },
   { label: 'Furtado Property', text: 'Residential development, South-East Queensland' },
-  { label: 'Sept 2026', text: 'MIRA Living, Bargara — nearing completion' },
+  { label: '2026', text: 'MIRA Living, Bargara — completed' },
   { label: '9 Sept 2026', text: 'West End proposal lodged with Brisbane City Council' },
 ];

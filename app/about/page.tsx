@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { DecadesStatement } from '@/components/DecadesStatement';
 import { MediaFrame } from '@/components/MediaFrame';
 import { QueenslandMap } from '@/components/QueenslandMap';
-import { images } from '@/content/images';
+import { images, type ImageSlot } from '@/content/images';
 import { mira, mtGravatt, mtGravattLevels, westEnd, westEndStoreys } from '@/content/projects';
 import { site } from '@/content/site';
 import { pageMetadata } from '@/lib/metadata';
@@ -16,7 +16,7 @@ export const metadata = pageMetadata({
 });
 
 const currentProjects = [
-  { number: '01', project: mira, status: 'Nearing completion · Sept 2026', detail: `${mira.location} · 25 residences · Boutique oceanfront residential` },
+  { number: '01', project: mira, status: mira.statusLine, detail: `${mira.location} · 25 residences · Boutique oceanfront residential` },
   {
     number: '02',
     project: westEnd,
@@ -46,6 +46,9 @@ const brandTiers = [
 ];
 
 export default function AboutPage() {
+  // Temporary MIRA Living image until the approved portrait is supplied (see content/images.ts).
+  const portrait: ImageSlot = images.portrait;
+  const aboutImage = portrait.src ? portrait : images.aboutInterim;
   return (
     <>
       <section className={styles.hero} aria-labelledby="about-title">
@@ -68,7 +71,7 @@ export default function AboutPage() {
             </div>
           </div>
           <MediaFrame
-            image={images.portrait}
+            image={aboutImage}
             aspect="4/5"
             tone="sand"
             pattern="columns"
