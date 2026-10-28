@@ -129,6 +129,47 @@ const photos = {
     fit: 'contain',
     quality: 90,
   },
+
+  // Mount Gravatt (32–34 Lauder Street) — renders and context images extracted from the MAS Architecture
+  // DA report (August 2026). Project name not yet confirmed; never label these with a working title.
+  // TODO(assets): the embedded renders are ~1650px wide — request the original renders (≥3000px) from MAS.
+  mtGravattStreet: {
+    src: '/images/mt-gravatt-render-street.jpg',
+    alt: 'Architectural render of the proposed Mount Gravatt apartment building from Lauder Street: five levels of deep balconies with timber-battened screens and rooftop planting',
+    quality: 90,
+  },
+  mtGravattStreet2: {
+    src: '/images/mt-gravatt-render-street-2.jpg',
+    alt: 'Architectural render of the proposed Mount Gravatt building from further along Lauder Street, with the landscaped entry and undercroft parking',
+    quality: 90,
+  },
+  mtGravattRear: {
+    src: '/images/mt-gravatt-render-rear.jpg',
+    alt: 'Architectural render of the rear facade of the proposed Mount Gravatt building, its stepped balconies and rooftop trees above a planted boundary',
+    quality: 90,
+  },
+  mtGravattRear2: {
+    src: '/images/mt-gravatt-render-rear-2.jpg',
+    alt: 'Architectural render of the rear corner of the proposed Mount Gravatt building, with full-height glazing and projecting balconies',
+    quality: 90,
+  },
+  mtGravattEntryDetail: {
+    src: '/images/mt-gravatt-render-entry-detail.jpg',
+    alt: 'Architectural render looking up above the entry of the proposed Mount Gravatt building: timber-battened balcony screens and planted ledges',
+    quality: 90,
+  },
+  mtGravattSiteAerial: {
+    src: '/images/mt-gravatt-site-aerial.jpg',
+    alt: 'Aerial photograph of Mount Gravatt, with the bushland of Mount Gravatt Reserve beside the Logan Road corridor and the surrounding streets',
+  },
+  mtGravattContextAerial: {
+    src: '/images/mt-gravatt-context-aerial.jpg',
+    alt: 'Aerial photograph looking north from Mount Gravatt along Logan Road towards the Brisbane CBD skyline',
+  },
+  mtGravattLauderStreet: {
+    src: '/images/mt-gravatt-lauder-street.jpg',
+    alt: 'The existing houses at 32–34 Lauder Street, Mount Gravatt, seen from the street before development',
+  },
 } satisfies Record<string, Omit<ImageSlot, 'label'>>;
 
 
@@ -157,12 +198,15 @@ export const images = {
   westEndLandscapePlan: { label: 'Landscape plan to be supplied', ...photos.westEndLandscapePlan, fit: 'contain' },
   westEndSection: { label: 'Building section to be supplied', ...photos.westEndSection, fit: 'contain' },
 
-  // Mount Gravatt — imagery to be supplied by Graham (placeholders render until then).
-  mtGravattHero: { label: 'Approved Mount Gravatt render or site image to be supplied' },
-  mtGravattDetail: { label: 'Approved Mount Gravatt detail image to be supplied' },
-  mtGravattDrawing1: { label: 'Mount Gravatt site plan to be supplied', fit: 'contain' },
-  mtGravattDrawing2: { label: 'Mount Gravatt landscape plan to be supplied', fit: 'contain' },
-  mtGravattDrawing3: { label: 'Mount Gravatt building section to be supplied', fit: 'contain' },
+  // Mount Gravatt — renders from the August 2026 DA report (artist's impressions).
+  mtGravattHero: { label: 'Approved Mount Gravatt render to be supplied', ...photos.mtGravattStreet, position: '50% 45%' },
+  mtGravattDetail: { label: 'Approved Mount Gravatt detail image to be supplied', ...photos.mtGravattEntryDetail, position: '45% center' },
+  mtGravattRender1: { label: 'Mount Gravatt render to be supplied', ...photos.mtGravattStreet2, position: '50% 55%' },
+  mtGravattRender2: { label: 'Mount Gravatt render to be supplied', ...photos.mtGravattRear, position: 'center 45%' },
+  mtGravattRender3: { label: 'Mount Gravatt render to be supplied', ...photos.mtGravattRear2, position: 'center 45%' },
+  mtGravattSiteToday: { label: 'Mount Gravatt site photograph to be supplied', ...photos.mtGravattLauderStreet, position: 'center 55%' },
+  mtGravattSiteAerial: { label: 'Mount Gravatt site aerial to be supplied', ...photos.mtGravattSiteAerial, position: '75% 32%' },
+  mtGravattContext: { label: 'Mount Gravatt context aerial to be supplied', ...photos.mtGravattContextAerial, position: 'center 45%' },
 
   // About
   portrait: { label: 'Approved Graham Furtado portrait to be supplied' },

@@ -10,7 +10,7 @@ import { Parallax } from '@/components/Parallax';
 import { ViewCursor } from '@/components/ViewCursor';
 import { Viewable } from '@/components/Viewable';
 import { images } from '@/content/images';
-import { mira, mtGravatt, mtGravattNotice, mtGravattTeam, westEnd, westEndNotice, westEndStoreys, westEndTeam } from '@/content/projects';
+import { mira, mtGravatt, mtGravattLevels, mtGravattNotice, mtGravattTeam, westEnd, westEndNotice, westEndStoreys, westEndTeam } from '@/content/projects';
 import { pageMetadata } from '@/lib/metadata';
 import styles from './developments.module.css';
 
@@ -18,7 +18,7 @@ export const metadata = pageMetadata({
   title: 'Developments',
   path: '/developments',
   description:
-    'MIRA Living, a boutique 25-residence oceanfront development in Bargara, a proposed 13-storey, 113-apartment residential scheme in West End, Brisbane, lodged by Furtado Property in September 2026, and a residential project in Mount Gravatt, Brisbane.',
+    'MIRA Living, a boutique 25-residence oceanfront development in Bargara, a proposed 13-storey, 113-apartment residential scheme in West End, Brisbane, lodged by Furtado Property in September 2026, and a five-level, 30-residence apartment project at 32–34 Lauder Street, Mount Gravatt, with construction scheduled for early 2027.',
 });
 
 export default function DevelopmentsPage() {
@@ -220,13 +220,20 @@ export default function DevelopmentsPage() {
         </div>
       </section>
 
-      {/* Project 03 — Mount Gravatt (details and imagery to be supplied; placeholders render until then) */}
+      {/* Project 03 — Mount Gravatt (32–34 Lauder Street; renders from the August 2026 DA report, name to be announced) */}
       <section id={mtGravatt.slug} className={`section rule-top ${styles.anchor}`} aria-labelledby="mtgravatt-title">
         <div className="container">
           <article className={styles.project}>
             <div className={styles.projectMedia}>
-              <Viewable image={mtGravatt.image} caption="Mount Gravatt Residential Project — image to be supplied">
-                <MediaFrame image={mtGravatt.image} aspect="4/5" tone="teal" pattern="grid" sizes="(min-width: 900px) 80vw, 180vw">
+              <Viewable image={mtGravatt.image} caption="Mount Gravatt Residential Project — view from Lauder Street (artist's impression)">
+                <MediaFrame
+                  image={mtGravatt.image}
+                  aspect="4/5"
+                  tone="teal"
+                  pattern="grid"
+                  /* Landscape render cover-cropped into a 4:5 frame is drawn ~1.8× the frame width. */
+                  sizes="(min-width: 900px) 80vw, 180vw"
+                >
                   <BadgeGroup>
                     <Badge variant="dark">Project {mtGravatt.number}</Badge>
                     <Badge>{mtGravatt.statusBadge}</Badge>
@@ -239,39 +246,54 @@ export default function DevelopmentsPage() {
               <h2 id="mtgravatt-title" data-reveal className={styles.projectTitle}>
                 {mtGravatt.name}
               </h2>
-              {mtGravatt.scale && (
-                <div className={styles.statRow}>
-                  <div className={styles.stat}>
-                    <span className={`big-numeral ${styles.statValue}`} data-reveal data-motion="lines">
-                      <Lines lines={[String(mtGravatt.scale.value)]} />
-                    </span>
-                    <span className="label">{mtGravatt.scale.unit}</span>
-                  </div>
+              <div className={styles.statRow}>
+                <div className={styles.stat}>
+                  <span className={`big-numeral ${styles.statValue}`} data-reveal data-motion="lines">
+                    <Lines lines={[String(mtGravattLevels)]} />
+                  </span>
+                  <span className="label">Levels</span>
                 </div>
-              )}
+                <div className={styles.stat}>
+                  <span className={`big-numeral ${styles.statValue}`} data-reveal data-motion="lines">
+                    <Lines lines={[String(mtGravatt.scale?.value)]} />
+                  </span>
+                  <span className="label">{mtGravatt.scale?.unit}</span>
+                </div>
+              </div>
               <p className={`body ${styles.summary}`}>{mtGravatt.summary}</p>
               <p className={styles.notice} role="note">
                 {mtGravattNotice}
               </p>
               <FactList facts={mtGravatt.facts} />
-              {mtGravattTeam.length > 0 && (
-                <>
-                  <h3 className={styles.teamHeading}>Project team</h3>
-                  <FactList facts={mtGravattTeam} minColumn={180} />
-                </>
-              )}
+              <h3 className={styles.teamHeading}>Project team</h3>
+              <FactList facts={mtGravattTeam} minColumn={180} />
             </div>
           </article>
           <div className={styles.drawings}>
             <p data-reveal className={styles.drawingsHead}>
-              <span className="eyebrow">Drawings</span>
-              <span className={styles.drawingsNote}>Drawings to be supplied</span>
+              <span className="eyebrow">Architectural renders</span>
+              <span className={styles.drawingsNote}>Artist’s impressions · MAS Architecture · August 2026</span>
             </p>
             <DrawingGallery
+              viewLabel="View render"
               drawings={[
-                { image: images.mtGravattDrawing1, caption: 'Site plan' },
-                { image: images.mtGravattDrawing2, caption: 'Landscape plan' },
-                { image: images.mtGravattDrawing3, caption: 'Building section' },
+                { image: images.mtGravattRender1, caption: 'Lauder Street frontage' },
+                { image: images.mtGravattRender2, caption: 'Rear facade' },
+                { image: images.mtGravattRender3, caption: 'Rear corner' },
+              ]}
+            />
+          </div>
+          <div className={styles.drawings}>
+            <p data-reveal className={styles.drawingsHead}>
+              <span className="eyebrow">Site and context</span>
+              <span className={styles.drawingsNote}>Mount Gravatt, Brisbane · approx. 4.5 km from the CBD</span>
+            </p>
+            <DrawingGallery
+              viewLabel="View image"
+              drawings={[
+                { image: images.mtGravattSiteToday, caption: 'The site today · Lauder Street' },
+                { image: images.mtGravattSiteAerial, caption: 'Mount Gravatt · site aerial' },
+                { image: images.mtGravattContext, caption: 'Looking north to the Brisbane CBD' },
               ]}
             />
           </div>

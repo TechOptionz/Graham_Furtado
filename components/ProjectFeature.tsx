@@ -97,7 +97,7 @@ export function WestEndFeature() {
   );
 }
 
-/** Mount Gravatt project: same split as West End, with placeholders until details and imagery are supplied. */
+/** Mount Gravatt project (32–34 Lauder Street): same split as West End; renders from the August 2026 DA report. */
 export function MtGravattFeature() {
   return (
     <article className={styles.split} aria-labelledby="feature-mtgravatt">

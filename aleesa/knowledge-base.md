@@ -161,12 +161,20 @@ specialist consultants on each project and coordinated by Graham's team.
   [CONFIRM WITH GRAHAM: whether a register of interest exists]
 
 ### Mount Gravatt Residential Project — Brisbane
-- Residential project by Furtado Property in Mount Gravatt, on Brisbane's
-  southside. Project details (address, scale, type, status, consultant team)
-  and imagery are to be confirmed by Graham. [CONFIRM WITH GRAHAM]
-- Until confirmed, the bot should say: "Furtado Property has a residential
-  project in Mount Gravatt, Brisbane. Details will be published once confirmed."
-- Do not state figures, status, pricing or a timeline for Mount Gravatt.
+- Residential apartment building by Furtado Property at 32–34 Lauder Street,
+  Mount Gravatt East, Queensland 4122, on Brisbane's southside (approx. 4.5 km
+  from the CBD; near Griffith University Mount Gravatt campus, Mount Gravatt
+  Lookout and Mount Gravatt Plaza).
+- Scale: 5 levels, 30 residences.
+- Status: development application report prepared August 2026 (Brisbane City
+  Council). Construction is scheduled to commence in early 2027.
+- Consultant team: MAS Architecture (architect), Urbicus (town planner),
+  AS Design (landscape), BMC Traffic (traffic/waste), Coordinated Development
+  Solutions (civil).
+- **Project name not yet decided.** Refer to it only as the Mount Gravatt
+  project / 32–34 Lauder Street. Never use or guess a marketing name.
+- Not for sale yet; no pricing, apartment mix, register of interest or
+  completion date confirmed. [CONFIRM WITH GRAHAM]
 
 ### Further projects
 None beyond the three above. The bot should say: "No further projects have been

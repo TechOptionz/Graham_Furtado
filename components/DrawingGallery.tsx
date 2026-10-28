@@ -16,7 +16,7 @@ interface Drawing {
  * lightbox at full source resolution — drawings are meant to be inspected.
  * Escape, the close button or a click on the backdrop closes it.
  */
-export function DrawingGallery({ drawings }: { drawings: Drawing[] }) {
+export function DrawingGallery({ drawings, viewLabel = 'View drawing' }: { drawings: Drawing[]; viewLabel?: string }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [active, setActive] = useState<Drawing | null>(null);
 
@@ -36,7 +36,7 @@ export function DrawingGallery({ drawings }: { drawings: Drawing[] }) {
               <span className={styles.caption}>
                 {drawing.caption}
                 <span className={styles.view} aria-hidden="true">
-                  View drawing →
+                  {viewLabel} →
                 </span>
               </span>
             </button>
@@ -47,7 +47,7 @@ export function DrawingGallery({ drawings }: { drawings: Drawing[] }) {
       <dialog
         ref={dialogRef}
         className={styles.dialog}
-        aria-label={active ? `${active.caption} (full size)` : 'Drawing'}
+        aria-label={active ? `${active.caption} (full size)` : 'Image'}
         onClose={() => setActive(null)}
         onClick={(e) => {
           if (e.target === dialogRef.current) dialogRef.current.close();

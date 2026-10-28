@@ -5,9 +5,10 @@ import { images, type ImageSlot } from './images';
  * Do not alter figures. West End is a lodged proposal — never describe it as
  * approved, under construction or complete.
  *
- * Mount Gravatt: project confirmed, details and imagery to follow from Graham.
- * Every value marked "to be confirmed" is a placeholder — replace it with the
- * supplied facts; do not invent figures, status or a consultant team.
+ * Mount Gravatt: facts from the MAS Architecture DA report (August 2026) and
+ * Graham's covering note (27 Oct 2026): 5 levels, 30 units, construction to
+ * commence early 2027. The project name is NOT yet decided — the working title
+ * in the report must not be used anywhere on the site until confirmed.
  */
 
 export interface ProjectFact {
@@ -93,22 +94,33 @@ export const mtGravatt: Project = {
   number: '03',
   name: 'Mount Gravatt Residential Project',
   location: 'Mount Gravatt, Brisbane',
-  statusBadge: 'Details to be confirmed',
-  statusLine: 'Details to be confirmed',
+  statusBadge: 'Construction early 2027',
+  statusLine: 'Development application · Construction early 2027',
+  scale: { value: 30, unit: 'Residences' },
   summary:
-    'Furtado Property is progressing a residential project in Mount Gravatt, on Brisbane\u2019s southside. Project details, drawings and imagery will be published here once confirmed.',
+    'A five-level, 30-residence apartment building at 32\u201334 Lauder Street, Mount Gravatt, on Brisbane\u2019s southside. Set on a quiet street a short walk from the Logan Road corridor, the design pairs deep, screened balconies with rooftop and facade planting, drawing on the bushland and lookout of Mount Gravatt itself. Construction is scheduled to commence in early 2027.',
   facts: [
-    { label: 'Site', value: 'Mount Gravatt, Brisbane · address to be confirmed' },
-    { label: 'Development type', value: 'Residential · to be confirmed' },
-    { label: 'Proposed scale', value: 'To be confirmed' },
+    { label: 'Site', value: '32\u201334 Lauder Street, Mount Gravatt East, Queensland 4122' },
+    { label: 'Development type', value: 'Residential apartments' },
+    { label: 'Scale', value: '5 levels \u00b7 30 residences' },
     { label: 'Developer', value: 'Furtado Property' },
-    { label: 'Status', value: 'To be confirmed' },
+    { label: 'Status', value: 'Development application prepared August 2026 \u00b7 Brisbane City Council' },
+    { label: 'Construction', value: 'Scheduled to commence early 2027' },
+    { label: 'Location', value: 'Approx. 4.5 km from the Brisbane CBD \u00b7 near Griffith University, Mount Gravatt Lookout and Mount Gravatt Plaza' },
   ],
   image: images.mtGravattHero,
 };
 
-/** Consultant team for Mount Gravatt. Leave empty until named by Graham. */
-export const mtGravattTeam: ProjectFact[] = [];
+export const mtGravattLevels = 5;
+
+/** Consultant team named in the DA report (August 2026). */
+export const mtGravattTeam: ProjectFact[] = [
+  { label: 'Architect', value: 'MAS Architecture' },
+  { label: 'Town planner', value: 'Urbicus' },
+  { label: 'Landscape architect', value: 'AS Design' },
+  { label: 'Traffic / waste', value: 'BMC Traffic' },
+  { label: 'Civil engineer', value: 'Coordinated Development Solutions' },
+];
 
 export const mtGravattNotice =
-  'Project details, status and imagery to be confirmed. Figures shown on this page for Mount Gravatt are placeholders until supplied.';
+  'Project name to be announced. Images are artist\u2019s impressions from the August 2026 development application report and are subject to change. Details will be updated as the project progresses.';

@@ -3,7 +3,7 @@ import { DecadesStatement } from '@/components/DecadesStatement';
 import { MediaFrame } from '@/components/MediaFrame';
 import { QueenslandMap } from '@/components/QueenslandMap';
 import { images } from '@/content/images';
-import { mira, mtGravatt, westEnd, westEndStoreys } from '@/content/projects';
+import { mira, mtGravatt, mtGravattLevels, westEnd, westEndStoreys } from '@/content/projects';
 import { site } from '@/content/site';
 import { pageMetadata } from '@/lib/metadata';
 import styles from './about.module.css';
@@ -27,7 +27,7 @@ const currentProjects = [
     number: '03',
     project: mtGravatt,
     status: mtGravatt.statusLine,
-    detail: `${mtGravatt.location} · Residential · Details to be confirmed`,
+    detail: `${mtGravatt.location} · ${mtGravattLevels} levels · 30 residences`,
   },
 ];
 
@@ -123,7 +123,7 @@ export default function AboutPage() {
             <p data-reveal className="body muted">
               His current development story includes MIRA Living, a boutique 25-residence oceanfront project in Bargara,
               Furtado Property&rsquo;s recently lodged 113-apartment residential proposal in West End, Brisbane, and a
-              residential project in Mount Gravatt, Brisbane, with details to follow. Together they show Graham operating beyond property sales, with a public role tied to site opportunity,
+              five-level, 30-residence apartment project in Mount Gravatt, Brisbane, with construction scheduled for early 2027. Together they show Graham operating beyond property sales, with a public role tied to site opportunity,
               product positioning, consultant coordination and delivery.
             </p>
           </div>
