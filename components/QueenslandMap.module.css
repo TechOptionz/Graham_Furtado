@@ -10,12 +10,45 @@
   overflow: hidden;
 }
 
+/* Sea: a flat teal wash plus a radial depth gradient (see the component's <defs>). */
+.sea {
+  fill: var(--olive);
+  fill-opacity: 0.09;
+}
+.seaDepth {
+  mix-blend-mode: multiply;
+}
+.graticule {
+  fill: none;
+  stroke: var(--olive);
+  stroke-opacity: 0.14;
+  stroke-width: 0.6;
+}
 .australia {
-  fill: var(--limestone);
-  fill-opacity: 0.45;
+  fill: var(--ivory);
+  fill-opacity: 0.85;
+}
+.coast {
+  fill: none;
+  stroke: var(--olive);
+  stroke-opacity: 0.35;
+  stroke-width: 0.7;
+  stroke-linejoin: round;
 }
 .queensland {
   fill: var(--limestone);
+}
+.frame {
+  fill: none;
+  stroke: var(--olive);
+  stroke-opacity: 0.25;
+  stroke-width: 1;
+}
+.seaLabel {
+  fill: var(--olive);
+  fill-opacity: 0.7;
+  font: italic 500 13px var(--font-serif-italic);
+  letter-spacing: 0.08em;
 }
 .outline {
   fill: none;
@@ -81,13 +114,29 @@
 }
 
 /* ---------- Scroll-in story (runs once; final state without JS / reduced motion) ---------- */
+.sea,
+.seaDepth,
+.graticule,
 .australia,
+.coast,
+.seaLabels,
 .queensland,
 .border,
 .seqGroup,
 .pin,
 .caption {
   transition: opacity 0.6s var(--ease-expo);
+}
+.sea,
+.seaDepth {
+  transition-duration: 0.9s;
+}
+.graticule,
+.seaLabels {
+  transition-delay: 300ms;
+}
+.coast {
+  transition-delay: 150ms;
 }
 .outline {
   transition: stroke-dashoffset 1.2s cubic-bezier(0.65, 0, 0.35, 1);
@@ -120,7 +169,7 @@
     opacity 0.9s var(--ease-expo) 1650ms;
 }
 
-.figure[data-reveal='pending'] :is(.australia, .queensland, .border, .seqGroup, .pin, .caption) {
+.figure[data-reveal='pending'] :is(.sea, .seaDepth, .graticule, .australia, .coast, .seaLabels, .queensland, .border, .seqGroup, .pin, .caption) {
   opacity: 0;
 }
 .figure[data-reveal='pending'] .outline {
